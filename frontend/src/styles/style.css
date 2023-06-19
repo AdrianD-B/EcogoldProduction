@@ -7,6 +7,10 @@
 }
 
 h1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     font-weight: bold;
     font-size: 25;
 }
@@ -23,7 +27,19 @@ p{
     height: 100vh;
 }
 
-.login-container{
+.login-container,.register-form{    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 1000px;
+    height: 500px;
+    margin: auto;
+}
+
+.register-form-item{
+    font-weight: bold;
+    font-size: 20;
     display: flex;
     justify-content: center;
     align-items: center;

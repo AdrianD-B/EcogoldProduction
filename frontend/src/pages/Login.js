@@ -26,7 +26,7 @@ function Login() {
             <input type="password" required/>
           </div>
           <div className='login-form-item'>
-            <button type='submit'>Login</button>
+            <button type='submit'>hello</button>
           </div>
         </form>
         <p>Don't have an account? sign up here</p>
