@@ -1,0 +1,54 @@
+*{
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: 'Montserrat', sans-serif;
+    color: #4C3D3D;
+}
+
+h1{
+    font-weight: bold;
+    font-size: 25;
+}
+
+p{
+    font-size: 14;
+}
+
+.App{
+    display: flex;
+    justify-content: center;
+    background-color: #FFF7D4;
+    width: 100vw;
+    height: 100vh;
+}
+
+.login-container{    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 1000px;
+    height: 500px;
+    margin: auto;
+    background-color: #FFD95A;
+}
+
+.register-form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: auto;
+    width: 1000px;
+    height: 500px;
+    background-color: #FFD95A;
+}
+
+.login-form-item,.register-form-item{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
