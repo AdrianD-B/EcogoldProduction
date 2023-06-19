@@ -1,8 +1,8 @@
-import React from 'react'
+import React,{} from 'react'
 
 function Register() {
   return (
-    <div>Register</div>
+    <div></div>
   )
 }
 

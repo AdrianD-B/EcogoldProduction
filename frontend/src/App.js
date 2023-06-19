@@ -1,8 +1,13 @@
-import React from 'react'
+import React,{} from 'react'
+import Login from './pages/Login'
+import './styles/style.css'
 
 function App() {
+
   return (
-    <div>App</div>
+    <div className="App">
+      <Login/>
+    </div>
   )
 }
 
