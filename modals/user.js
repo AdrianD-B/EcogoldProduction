@@ -6,7 +6,8 @@ const SALT_I = 10;
 
 const userSchema = mongoose.Schema({
     name:{
-        type:String
+        type:String,
+        required: true
     },
     email: {
         type: String,
@@ -18,6 +19,11 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true,
         minlength: 5
+    },
+    admin:{
+        type: Boolean,
+        required:true,
+        default: true
     },
     token: {
         type:String,
