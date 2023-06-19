@@ -38,7 +38,7 @@ function Register() {
           />
         </div>
         <div>
-          <button type="submit" className="register-form-item">Register</button>
+          <button type="submit">Register</button>
         </div>
       </form>
     </div>

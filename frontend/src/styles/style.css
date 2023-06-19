@@ -7,10 +7,6 @@
 }
 
 h1{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
     font-weight: bold;
     font-size: 25;
 }
@@ -27,7 +23,7 @@ p{
     height: 100vh;
 }
 
-.login-container,.register-form{    
+.login-container{    
     display: flex;
     justify-content: center;
     align-items: center;
@@ -35,11 +31,10 @@ p{
     width: 1000px;
     height: 500px;
     margin: auto;
+    background-color: #FFD95A;
 }
 
-.register-form-item{
-    font-weight: bold;
-    font-size: 20;
+.register-form{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -50,7 +45,7 @@ p{
     background-color: #FFD95A;
 }
 
-.login-form-item{
+.login-form-item,.register-form-item{
     display: flex;
     flex-direction: column;
     justify-content: center;
