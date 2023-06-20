@@ -1,8 +1,9 @@
-import React,{useContext} from "react";
+import React, { useContext } from "react";
 import AuthContext from "../context/AuthProvider";
+import ButtonComponent from "../components/ButtonComponent";
 
-function Login({setLogToggle}) {
-  const {setLoggedIn} = useContext(AuthContext)
+function Login({ setLogToggle }) {
+  const { setLoggedIn } = useContext(AuthContext)
   const handleLogin = async (e) => {
     e.preventDefault();
 
@@ -13,7 +14,7 @@ function Login({setLogToggle}) {
     <>
       <div className="login-container">
         <div className="login-side-container">
-        <img src="./ECOGOLD_LOGO_Transparent.png" className='login-logo-img'/>
+          <img src="./ECOGOLD_LOGO_Transparent.png" className='login-logo-img' />
         </div>
         <form className="login-form" onSubmit={handleLogin}>
           <h1 className="login-form-item">Login</h1>
@@ -26,11 +27,11 @@ function Login({setLogToggle}) {
             <input type="password" required />
           </div>
           <div className="login-form-item">
-            <button type="submit">Login</button>
+            <ButtonComponent buttonClass="login-button" type="submit" buttonText={"Login"}></ButtonComponent>
           </div>
           <p>Don't have an account? sign up <b onClick={() => setLogToggle(false)}>here</b></p>
         </form>
-        
+
       </div>
     </>
   );
