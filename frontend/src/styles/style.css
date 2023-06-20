@@ -33,7 +33,7 @@ b{
 
 /* Login/Register pages */
 
-.login-container,.register-container{    
+.login-container,.register-container{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -66,5 +66,5 @@ b{
 }
 
 .login-logo-img,.register-logo-img{
-    height: 30%;
+    height: 30%
 }
