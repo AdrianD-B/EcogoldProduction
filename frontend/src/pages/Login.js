@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import AuthContext from "../context/AuthProvider";
 import ButtonComponent from "../components/ButtonComponent";
+import FormInput from "../components/FormInput";
 
 function Login({ setLogToggle }) {
   const { setLoggedIn } = useContext(AuthContext)
@@ -18,14 +19,8 @@ function Login({ setLogToggle }) {
         </div>
         <form className="login-form" onSubmit={handleLogin}>
           <h1 className="login-form-item">Login</h1>
-          <div className="login-form-item">
-            <p>Email</p>
-            <input type="email" required />
-          </div>
-          <div className="login-form-item">
-            <p>Password</p>
-            <input type="password" required />
-          </div>
+          <FormInput inputClass="login-form-item" inputType="email" header="Email" />
+          <FormInput inputClass="login-form-item" inputType="password" header="Password" />
           <div className="login-form-item">
             <ButtonComponent buttonClass="login-button" type="submit" buttonText={"Login"}></ButtonComponent>
           </div>
