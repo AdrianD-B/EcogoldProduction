@@ -5,10 +5,11 @@ function Register() {
   return (
     <div className="register-container">
       {/*<form onSubmit=> */}
+      <div className='register-side-container'>
+        <img src="./ECOGOLD_LOGO_Transparent.png" className='register-logo-img'/>
+      </div>
       <form className="register-form">
-        <div>
-          <h1>Register</h1>
-        </div>
+        <h1 className="register-form-item">Register</h1>
         <div className="register-form-item">
           <input 
             type="text"
@@ -37,7 +38,7 @@ function Register() {
             placeholder="Password"
           />
         </div>
-        <div>
+        <div className="register-form-item">
           <button type="submit">Register</button>
         </div>
       </form>

@@ -6,6 +6,8 @@
     color: #4C3D3D;
 }
 
+/* Typography */
+
 h1{
     font-weight: bold;
     font-size: 25;
@@ -15,6 +17,12 @@ p{
     font-size: 14;
 }
 
+b{
+    cursor: pointer;
+}
+
+/* App */
+
 .App{
     display: flex;
     justify-content: center;
@@ -23,26 +31,21 @@ p{
     height: 100vh;
 }
 
-.login-container{    
+/* Login/Register pages */
+
+.login-container,.register-container{    
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    flex-direction: column;
+    flex-direction: row;
     width: 1000px;
     height: 500px;
     margin: auto;
     background-color: #FFD95A;
 }
 
-.register-form{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+.login-form,.register-form{
     margin: auto;
-    width: 1000px;
-    height: 500px;
-    background-color: #FFD95A;
 }
 
 .login-form-item,.register-form-item{
@@ -51,4 +54,17 @@ p{
     justify-content: center;
     align-items: center;
     padding: 10px;
+}
+
+.login-side-container,.register-side-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    height: 100%;
+    background-color: #C07F00;
+}
+
+.login-logo-img,.register-logo-img{
+    height: 30%;
 }

@@ -1,38 +1,39 @@
-import React from 'react'
+import React,{useContext} from "react";
+import AuthContext from "../context/AuthProvider";
 
-function Login() {
-
+function Login({setLogToggle}) {
+  const {setLoggedIn} = useContext(AuthContext)
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    try {
-      
-    } catch (error) {
-      
-    }
-  }
+    setLoggedIn(true)
+  };
 
   return (
     <>
-      <div className='login-container'>
-        <h1>Login</h1>
+      <div className="login-container">
+        <div className="login-side-container">
+        <img src="./ECOGOLD_LOGO_Transparent.png" className='login-logo-img'/>
+        </div>
         <form className="login-form" onSubmit={handleLogin}>
-          <div className='login-form-item'>
+          <h1 className="login-form-item">Login</h1>
+          <div className="login-form-item">
             <p>Email</p>
-            <input type="email" required/>
+            <input type="email" required />
           </div>
-          <div className='login-form-item'>
+          <div className="login-form-item">
             <p>Password</p>
-            <input type="password" required/>
+            <input type="password" required />
           </div>
-          <div className='login-form-item'>
-            <button type='submit'>hello</button>
+          <div className="login-form-item">
+            <button type="submit">Login</button>
           </div>
+          <p>Don't have an account? sign up <b onClick={() => setLogToggle(false)}>here</b></p>
         </form>
-        <p>Don't have an account? sign up here</p>
+        
       </div>
     </>
-  )
+  );
 }
 
-export default Login
+export default Login;
