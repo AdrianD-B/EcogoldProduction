@@ -12,7 +12,10 @@ h1{
     font-weight: bold;
     font-size: 25;
 }
-
+h3{
+    color: white;
+    text-transform: uppercase;
+}
 p{
     font-size: 14;
 }
@@ -66,5 +69,37 @@ b{
 }
 
 .login-logo-img,.register-logo-img{
-    height: 30%
+    height: 30%;
+}
+
+/* Components */
+.login-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: 40%;
+    background-color: black;
+    padding: 5px;
+    
+}
+.chevron-arrow-right {
+    display: inline-block;
+    border-right: 4px solid white;
+    border-bottom: 4px solid white;
+    width: 10px; height: 10px;
+    animation: slide 1s forwards;
+    opacity: 0 ; 
+    transform: rotate(-45deg);
+    transform: translateX(-100%);
+  }
+@keyframes slide{
+    0%{
+        transform: translateX(-100%);
+        opacity: 0;
+        transform: rotate(-45deg);
+    }
+    100% {transform: translateX(0%) ;
+        opacity: 1 ; 
+        transform: rotate(-45deg);}
 }
