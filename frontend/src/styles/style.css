@@ -12,6 +12,10 @@ h1{
     font-weight: bold;
     font-size: 25;
 }
+h2{
+    background-color:grey;
+    padding: 5px;
+}
 h3{
     color: white;
     text-transform: uppercase;
@@ -82,6 +86,18 @@ b{
     height: 30%;
 }
 
+/* Task Viewer/Maker pages */
+.taskviewer-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    width: 1100px;
+    height: 500px;
+    margin: auto;
+    background-color: #FFD95A;
+}
+
 /* Components */
 .login-button-container,.register-button-container{
     display: flex;
@@ -127,4 +143,56 @@ b{
     100% {transform: translateX(0%) ;
         opacity: 1 ; 
         transform: rotate(-45deg);}
+}
+
+.popup,.popup-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 500px;
+    height: 400px;
+    background-color: rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.popup-inner{
+    position: relative;
+    padding: 32px;
+    width: 50%;
+    max-width: 500px;
+    background-color: white;
+}
+.enter-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: 60%;
+    background-color: black;
+    padding: 10px;
+    
+}
+.close-button{
+    position:absolute;
+    top: 16px;
+    right: 16px;
+
+}
+table {
+    border: 2px solid forestgreen;
+    width: 800px;
+    height: 200px;
+    align-items: center;
+    margin: auto;
+}
+ 
+th {
+    border-bottom: 1px solid black;
+}
+ 
+td {
+    text-align: center;
 }
