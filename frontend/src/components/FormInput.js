@@ -3,7 +3,7 @@ import React from "react";
 function FormInput({
   inputClass,
   inputType = "text",
-  header,
+  header = "",
   onChange,
   value,
 }) {
