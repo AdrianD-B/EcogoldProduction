@@ -11,16 +11,17 @@ function App() {
   const { loggedIn } = useContext(AuthContext);
   const [logToggle, setLogToggle] = useState(true);
   return (
-   /* <div className="App">
-      {!loggedIn ? (
-        logToggle ? (
-          <Login setLogToggle={setLogToggle} />
-        ) : (
-          <Register />
-        )
-      ) : null}
-    </div>*/
- <div><TaskViewerUser/></div> );
+    /* <div className="App">
+       {!loggedIn ? (
+         logToggle ? (
+           <Login setLogToggle={setLogToggle} />
+         ) : (
+           <Register />
+         )
+       ) : null}
+     </div> */
+    <div className="App"><TaskViewerUser /></div>
+  );
 }
 
 export default App;

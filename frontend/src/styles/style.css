@@ -89,13 +89,14 @@ b{
 /* Task Viewer/Maker pages */
 .taskviewer-container{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 1100px;
+    width: 1000px;
     height: 500px;
     margin: auto;
     background-color: #FFD95A;
+    box-shadow: 12px 12px 20px #4C3D3D;
 }
 
 /* Components */
