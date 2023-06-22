@@ -20,7 +20,7 @@ function App() {
         )
       ) : null}
     </div>*/
- <div><TaskViewerAdmin/></div> );
+ <div><TaskViewerUser/></div> );
 }
 
 export default App;
