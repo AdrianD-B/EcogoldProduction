@@ -1,15 +1,33 @@
 import React, { useState } from 'react'
 import ButtonComponent from '../components/ButtonComponent'
 import Popup from '../components/Popup'
-import FormInput from '../components/FormInput';
 
-const data = [
-  { model: 22, colour: "black", size: "large", quantity: 2, task: "cutting", progress: "0" }
-]
 
+
+
+  
 function TaskViewerUser() {
   const [buttonPopup, setButtonPopup] = useState(false);
+
+  const [data, setData] = useState([
+    { model: 22, colour: "black", size: "large", quantity: 2, description:"smooth", task: "cutting", progress: 0 },
+    { model: 22, colour: "black", size: "large", quantity: 2, description:"smooth", task: "cutting", progress: 0 }
+  ])
+  
+  const saveProgress = (quantity,progress,key) =>{
+  if (progress < quantity ) {
+    console.log(`Progress Saved for row ${key}`)
+  }
+  else if (progress >= quantity) {setButtonPopup(true)}
+  console.log(progress)
+}
+  const updateProgress = (e,key) => {
+    const updatedData = [...data];
+    updatedData[key].progress = parseInt(e.target.value);
+    setData(updatedData);
+  };
   return (
+    
     <div className='taskviewer-container'>
       
       <h2> TaskViewer </h2>
@@ -19,6 +37,7 @@ function TaskViewerUser() {
           <th>Colour</th>
           <th>Size</th>
           <th>Quantity</th>
+          <th>Description</th>
           <th>Task</th>
           <th>Progress</th>
         </tr>
@@ -29,21 +48,37 @@ function TaskViewerUser() {
               <td>{val.colour}</td>
               <td>{val.size}</td>
               <td>{val.quantity}</td>
+              <td>{val.description}</td>
               <td>{val.task}</td>
-              <td>{val.progress}</td>
+              <td><input 
+              name="progress"
+              value={val.progress}
+              type="number"
+              placeholder='0'
+              onChange={(e) => updateProgress(e,key)}
+              />
+              <p>{`/${val.quantity}`}</p>
+              </td>
+              <td>
+              <button className="progress-button" onClick={() => saveProgress(val.quantity, val.progress, key)}
+              >Save Progress</button>
+              </td>
             </tr>
           )
         })}
       </table>
-      <button className="progress-button" onClick={() => setButtonPopup(true)}>Edit Progress</button>
-
-    <Popup className="popup-progress" trigger={buttonPopup} setTrigger={setButtonPopup}>
-      <p>Enter Progress</p>
-      <FormInput inputClass="login-form-item" inputType="number"/>
-      <ButtonComponent buttonClass="enter-button" type="submit" buttonText={"Enter"}/>
-    </Popup>
+      
+      
+      
+      <Popup className="popup-progress" trigger={buttonPopup} setTrigger={setButtonPopup}>
+      <p>Are you sure you have completed this task?</p>
+      <ButtonComponent buttonClass="enter-button" type="submit" buttonText={"Yes"}/>
+      </Popup>
     </div >
+    
+    
   )
 }
+// onClick={"function for axios post"} <button className="progress-button" onClick={() => setButtonPopup(true)}>Edit Progress</button>
 //<ButtonComponent buttonClass="progress-button" onClick={() => setButtonPopup(true)} buttonText="Edit Progress"/>
 export default TaskViewerUser
