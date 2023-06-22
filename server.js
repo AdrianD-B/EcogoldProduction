@@ -43,22 +43,25 @@ app.post("/api/user", (req, res) => {
   });
 });
 
-app.post("/api/user/login", (req, res) => {
+app.post("/api/user/login", async (req, res) => {
   console.log(req.body);
-  User.findOne({ email: req.body.email }, (err, user) => {
+  try {
+    const user = await User.findOne({ email: req.body.email });
     console.log(user);
-    if (!user) return res.json({ message: "User not found" });
-    user.comparePassword(req.body.password, (err, isMatch) => {
-      if (err) throw err;
-      if (!isMatch)
-        return res.status(400).json({ message: "Password is incorrect" });
+    if (!user) {
+      return res.json({ message: "User not found" });
+    }
 
-      user.generateToken((err, user) => {
-        if (err) return res.status(400).json(err);
-        res.cookie("x_auth", user.token).send(user);
-      });
-    });
-  });
+    const isMatch = await user.comparePassword(req.body.password);
+    if (!isMatch) {
+      return res.status(400).json({ message: "Password is incorrect" });
+    }
+
+    await user.generateToken();
+    res.cookie("x_auth", user.token).send(user);
+  } catch (err) {
+    res.status(400).json(err);
+  }
 });
 
 app.get("/api/user/token", authenticate, (req, res) => {

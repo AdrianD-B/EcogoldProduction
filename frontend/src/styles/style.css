@@ -45,6 +45,7 @@ b{
     height: 500px;
     margin: auto;
     background-color: #FFD95A;
+    box-shadow: 12px 12px 20px #4C3D3D;
 }
 
 .login-form,.register-form{
@@ -57,6 +58,15 @@ b{
     justify-content: center;
     align-items: center;
     padding: 10px;
+    margin: auto;
+}
+
+.form-input{
+    text-decoration: none;
+    border-radius: 10px;
+    padding: 10px;
+    font-weight: bold;
+    border: none
 }
 
 .login-side-container,.register-side-container{
@@ -73,26 +83,41 @@ b{
 }
 
 /* Components */
-.login-button{
+.login-button-container,.register-button-container{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: row;
-    width: 40%;
     background-color: black;
-    padding: 5px;
-    
+    border: none;
+    width: 60%;
+    padding: 0;
+    margin: auto;
 }
+
+.login-button,.register-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    background-color: black;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    cursor: pointer;
+}
+
 .chevron-arrow-right {
     display: inline-block;
-    border-right: 4px solid white;
-    border-bottom: 4px solid white;
+    border-right: 2px solid white;
+    border-bottom: 2px solid white;
     width: 10px; height: 10px;
-    animation: slide 1s forwards;
+    animation: slide .5s forwards;
     opacity: 0 ; 
     transform: rotate(-45deg);
     transform: translateX(-100%);
   }
+
 @keyframes slide{
     0%{
         transform: translateX(-100%);
