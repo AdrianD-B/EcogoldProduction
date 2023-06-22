@@ -36,11 +36,15 @@ app.post("/api/user", (req, res) => {
     password: req.body.password,
   });
 
-  user.save((err, doc) => {
-    console.log(err);
-    if (err) res.status(400).send(err);
-    res.status(200).send(doc);
-  });
+  user.save()
+    .then(doc => {
+      console.log(doc);
+      res.status(200).send(doc);
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(400).send(err);
+    });
 });
 
 app.post("/api/user/login", async (req, res) => {
