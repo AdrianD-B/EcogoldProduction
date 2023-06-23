@@ -16,6 +16,7 @@ const { authenticate } = require("./middlewares/auth");
 
 // MODALS
 const { User } = require("./modals/user");
+const { Task } = require("./modals/task");
 
 //MONGODB
 const mongoUri = process.env.MONGO_URI;
@@ -75,6 +76,42 @@ app.get("/api/user/token", authenticate, (req, res) => {
 app.get("/api/user/logout", (req, res) => {
   res.clearCookie("x_auth").send("cleared cookie");
 });
+
+// // TASKS
+
+app.post("/api/task/create", (req,res) => {
+  const task = new Task({
+    name: req.body.name,
+    email: req.body.email,
+    model: req.body.model,
+    description: req.body.description,
+    size: req.body.size,
+    color: req.body.color,
+    quantity: req.body.quantity,
+    task: req.body.task,
+  });
+
+  task.save()
+    .then(doc => {
+      console.log(doc);
+      res.status(200).send(doc);
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(400).send(err);
+    });
+});
+
+app.get('/api/task/admin', async (req,res) => {
+  try {
+    const tasks = await Task.find()
+    res.status(200).send(tasks)
+  } catch (error) {
+    res.status(400).json(error);
+  }
+})
+
+app.get('/api/task/user')
 
 // PRODUCTION 
 
