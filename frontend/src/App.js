@@ -3,7 +3,7 @@ import React, { useState, useContext, useEffect } from "react";
 import AuthContext from "./context/AuthProvider";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
-import TaskViewerUser from "./pages/TaskViewerUser";
+import TaskViewerUser from "./pages/TaskViewer";
 import TaskViewerAdmin from "./pages/TaskViewerAdmin";
 import { useCookies } from "react-cookie";
 import "./styles/style.css";
@@ -16,7 +16,7 @@ function App() {
 
   const handleAuth = async () => {
     let token = cookies.x_auth
-    if (auth.email === undefined) {
+    if (auth.email === undefined && token != undefined) {
       try {
         const response = await axios.get(`http://localhost:3001/api/user/token?token=${token}`, 
         {
