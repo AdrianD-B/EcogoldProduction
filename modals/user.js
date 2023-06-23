@@ -6,7 +6,8 @@ const SALT_I = 10;
 
 const userSchema = mongoose.Schema({
     name:{
-        type:String
+        type:String,
+        required: true
     },
     email: {
         type: String,
@@ -46,35 +47,33 @@ userSchema.pre('save', function (next) {
     }
 })
 
-userSchema.methods.comparePassword = function(candidatePassword,cb){
-    bcrypt.compare(candidatePassword,this.password,function(err,isMatch){
-        if(err) return cb(err)
-        cb(null,isMatch)
-    })
-}
+userSchema.methods.comparePassword = function(candidatePassword) {
+    return new Promise((resolve, reject) => {
+      bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(isMatch);
+        }
+      });
+    });
+  };
 
-userSchema.methods.generateToken = function(cb){
-    var user = this;
-    let token = jwt.sign(user._id.toHexString(),process.env.SECRET);
-
-    user.token = token;
-    user.save(function(err,user){
-        if(err) return cb(err)
-        cb(null,user)
-    })
-}
-
-userSchema.statics.findByToken = function(token,cb){
+  userSchema.methods.generateToken = function() {
     const user = this;
+    const token = jwt.sign(user._id.toHexString(), process.env.SECRET);
+  
+    user.token = token;
+    
+    return user.save();
+  };
 
-    jwt.verify(token,process.env.SECRET,(err,decode)=>{
-        user.findOne({'_id':decode,'token':token},(err,user)=>{
-            console.log( user)
-            if(err) return cb(err)
-            cb(null,user)
-        })
-    })
-}
+  userSchema.statics.findByToken = function(token) {
+    const user = this;
+  
+    const decode = jwt.verify(token, process.env.SECRET);
+    return user.findOne({ '_id': decode, 'token': token });
+  };
 
 
 

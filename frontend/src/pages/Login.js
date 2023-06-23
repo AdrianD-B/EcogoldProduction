@@ -3,11 +3,13 @@ import axios from "axios";
 import AuthContext from "../context/AuthProvider";
 import ButtonComponent from "../components/ButtonComponent";
 import FormInput from "../components/FormInput";
+import { useCookies } from "react-cookie";
 
 function Login({ setLogToggle }) {
   const { setAuth,setLoggedIn } = useContext(AuthContext);
   const [formDetails, setFormDetails] = useState({});
   const formRef = useRef();
+  const [cookies, setCookie] = useCookies()
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -21,7 +23,8 @@ function Login({ setLogToggle }) {
       if(response.data.message === "User not found"){
         console.log(response.data.message)
       }else{
-        setAuth({name: response.data.name, email: formDetails.email, admin: response.data.admin, token: response.data.token})
+        setAuth({name: response.data.name, email: formDetails.email, admin: response.data.admin})
+        setCookie("x_auth",response.data.token)
         setLoggedIn(true)
       }
     } catch (error) {

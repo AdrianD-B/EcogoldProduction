@@ -1,17 +1,30 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import FormInput from "../components/FormInput";
 import ButtonComponent from "../components/ButtonComponent";
+import axios from "axios";
 //context variable for register
 
-function Register() {
+function Register({setLogToggle}) {
   const [formDetails,setFormDetails] = useState({});
   const code = process.env.REACT_APP_INV_CODE
 
-  const handleRegister = async(e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
     if(formDetails.invitation === code){
-      console.log("worked")
-    }else{console.log('no work')}
+      try {
+        const response = await axios.post('http://localhost:3001/api/user',formDetails,
+        {
+          headers: {'Content-Type': 'application/json'},
+          withCredentials: false
+        });
+        console.log(response.data)
+        setLogToggle(true)
+      } catch (error) {
+        console.log(error.response.data)
+      }
+    }else{
+      console.log('invalid invitation code')
+    }
   }
 
   const handleFormInputChange = (e) => {
