@@ -5,13 +5,13 @@ import ButtonComponent from "../components/ButtonComponent";
 
 function Register() {
   const [formDetails,setFormDetails] = useState({});
+  const code = process.env.REACT_APP_INV_CODE
 
   const handleRegister = async(e) => {
     e.preventDefault();
-    if(formDetails.invitation === process.env.REACT_APP_INV_CODE){
+    if(formDetails.invitation === code){
       console.log("worked")
     }else{console.log('no work')}
-    console.log(process.env.REACT_APP_INV_CODE)
   }
 
   const handleFormInputChange = (e) => {
