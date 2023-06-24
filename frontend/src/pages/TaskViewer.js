@@ -14,7 +14,7 @@ function TaskViewer() {
   const { auth } = useContext(AuthContext);
 
   const [buttonPopup, setButtonPopup] = useState(false);
-
+  const [creatorPage, setCreatorPage] = useState(false);
 
   const [data, setData] = useState([
     { model: 22, colour: "black", size: "large", quantity: 2, description: "smooth", task: "cutting", progress: 0 },
