@@ -111,7 +111,21 @@ app.get('/api/task/admin', async (req,res) => {
   }
 })
 
-app.get('/api/task/user')
+app.get('/api/task/user', async (req,res) => {
+  try {
+    const tasks = await Task.aggregate([{
+      $match: {
+        name: req.query.name,
+        $expr: {
+          $ne: ["$progress", "$quantity"]
+        }
+      }
+    }])
+    res.status(200).send(tasks)
+  } catch (error) {
+    res.status(400).json(error);
+  }
+})
 
 // PRODUCTION 
 
