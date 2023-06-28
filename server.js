@@ -127,6 +127,20 @@ app.get('/api/task/user', async (req,res) => {
   }
 })
 
+app.post('/api/task/update', async (req,res) => {
+  const {_id,progress} = req.body
+  try {
+    const task = await Task.updateOne({_id},{$set: {progress}})
+    res.status(200).send(task)
+  } catch (error) {
+    res.status(400).json(error);
+  }
+})
+
+// TOODO
+// list users (excluding admins) for TaskCreator
+// list filtered list of users when an admin clicks on their name
+
 // PRODUCTION 
 
 app.listen(port, () => {
