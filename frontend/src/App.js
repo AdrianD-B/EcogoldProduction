@@ -4,9 +4,6 @@ import AuthContext from "./context/AuthProvider";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import TaskViewerUser from "./pages/TaskViewer";
-import SwitchPage from "./pages/TaskViewer";
-import TaskCreator from "./pages/TaskCreator";
-import TaskViewerAdmin from "./pages/TaskViewerAdmin";
 import { useCookies } from "react-cookie";
 import "./styles/style.css";
 import axios from "axios";
@@ -18,7 +15,7 @@ function App() {
 
   const handleAuth = async () => {
     let token = cookies.x_auth
-    if (auth.email === undefined && token != undefined) {
+    if (auth.email === undefined && token !== undefined) {
       try {
         const response = await axios.get(`http://localhost:3001/api/user/token?token=${token}`, 
         {

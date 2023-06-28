@@ -4,12 +4,6 @@ import Popup from '../components/Popup'
 import AuthContext from '../context/AuthProvider';
 import TaskCreator from './TaskCreator';
 
-
-
-
-
-
-
 function TaskViewer() {
 
   const { auth } = useContext(AuthContext);

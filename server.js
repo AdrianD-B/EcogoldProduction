@@ -81,8 +81,7 @@ app.get("/api/user/logout", (req, res) => {
 
 app.post("/api/task/create", (req,res) => {
   const task = new Task({
-    name: req.body.name,
-    
+    name: req.body.name, 
     model: req.body.model,
     description: req.body.description,
     size: req.body.size,
