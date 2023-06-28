@@ -87,7 +87,7 @@ b{
 }
 
 /* Task Viewer/Maker pages */
-.taskviewer-container{
+.taskviewer-container, .taskcreator-container{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -100,7 +100,7 @@ b{
 }
 
 /* Components */
-.login-button-container,.register-button-container{
+.login-button-container,.register-button-container, .create-task-button-container{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -172,7 +172,7 @@ b{
     border-width: 2px;
     border-color: black;
 }
-.enter-button{
+.enter-button, .create-task-button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -180,6 +180,16 @@ b{
     background-color: black;
     padding: 10px;
     
+}
+.page-switch-button{
+    position: absolute;
+    display: flex;
+    top: 100px;
+    right: 210px;
+    background-color: black;
+    padding: 10px;
+
+
 }
 .close-button{
     position:absolute;
@@ -201,4 +211,9 @@ th {
  
 td {
     text-align: center;
+}
+
+.task-creation-form{
+    display: flex;
+    flex-direction: row;
 }

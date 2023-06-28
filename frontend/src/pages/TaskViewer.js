@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react'
 import ButtonComponent from '../components/ButtonComponent'
 import Popup from '../components/Popup'
 import AuthContext from '../context/AuthProvider';
+import TaskCreator from './TaskCreator';
 
 
 
@@ -35,11 +36,12 @@ function TaskViewer() {
     updatedData[key].progress = parseInt(e.target.value);
     setData(updatedData);
   };
-
+  
+  
   return (
     <>
     {
-      !auth.admin ?
+      auth.admin ?
         (<div className='taskviewer-container'>
 
           <h2> TaskViewer </h2>
@@ -87,35 +89,40 @@ function TaskViewer() {
             <ButtonComponent buttonClass="enter-button" type="submit" buttonText={"Yes"} />
           </Popup>
         </div >)
-        : (<div className='taskviewer-container'>
+        : creatorPage ? <TaskCreator setCreatorPage={setCreatorPage}/> : (<div className='taskviewer-container'>
 
-          <h2> TaskViewer </h2>
-          <table>
-            <tr>
-              <th>Name</th>
-              <th>Model</th>
-              <th>Colour</th>
-              <th>Size</th>
-              <th>Quantity</th>
-              <th>Task</th>
-              <th>Progress</th>
-            </tr>
-            {data.map((val, key) => {
-              return (
-                <tr key={key}>
-                  <td>{val.name}</td>
-                  <td>{val.model}</td>
-                  <td>{val.colour}</td>
-                  <td>{val.size}</td>
-                  <td>{val.quantity}</td>
-                  <td>{val.task}</td>
-                  <td>{val.progress}</td>
-                </tr>
-              )
-            })}
-          </table>
-          <ButtonComponent buttonClass="page-switch-button" onClick={() => setCreatorPage(true)} buttonText="Task Creator" />
-        </div >)}
+        <h2> TaskViewer </h2>
+        <table>
+          <tr>
+            <th>Name</th>
+            <th>Model</th>
+            <th>Colour</th>
+            <th>Size</th>
+            <th>Quantity</th>
+            <th>Task</th>
+            <th>Progress</th>
+          </tr>
+          {data.map((val, key) => {
+            return (
+              <tr key={key}>
+                <td>{val.name}</td>
+                <td>{val.model}</td>
+                <td>{val.colour}</td>
+                <td>{val.size}</td>
+                <td>{val.quantity}</td>
+                <td>{val.task}</td>
+                <td>{val.progress}</td>
+              </tr>
+            )
+          })}
+        </table>
+        <ButtonComponent buttonClass="page-switch-button" onClick={() => setCreatorPage(true)} buttonText="Task Creator" />
+        
+        
+        
+        
+            
+      </div >)}
       </>
     )
 }

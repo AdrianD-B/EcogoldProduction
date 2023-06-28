@@ -82,7 +82,7 @@ app.get("/api/user/logout", (req, res) => {
 app.post("/api/task/create", (req,res) => {
   const task = new Task({
     name: req.body.name,
-    email: req.body.email,
+    
     model: req.body.model,
     description: req.body.description,
     size: req.body.size,
@@ -102,9 +102,9 @@ app.post("/api/task/create", (req,res) => {
     });
 });
 
-app.get('api/task/getUsers', (req,res) => {
+app.get('/api/task/getUsers', async (req,res) => {
   try {
-    const users = User.find({admin: false})
+    const users = await User.find({admin: false})
     res.status(200).send(users)
   } catch (error) {
     res.status(400).json(error);

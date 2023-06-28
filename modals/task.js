@@ -2,17 +2,11 @@ const mongoose = require('mongoose')
 
 const taskSchema = mongoose.Schema({
     name:{
-        type:String,
+        type: String,
         required: true
     },
-    email: {
-        type: String,
-        required: true,
-        trim: true,
-        unique: 1
-    },
     model: {
-        type: Number,
+        type: String,
         required: true
     },
     description: {

@@ -4,6 +4,8 @@ import AuthContext from "./context/AuthProvider";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import TaskViewerUser from "./pages/TaskViewer";
+import SwitchPage from "./pages/TaskViewer";
+import TaskCreator from "./pages/TaskCreator";
 import TaskViewerAdmin from "./pages/TaskViewerAdmin";
 import { useCookies } from "react-cookie";
 import "./styles/style.css";
@@ -45,6 +47,7 @@ function App() {
           <Register />
         )
       ) : <TaskViewerUser />}
+      
     </div>
   );
 }
