@@ -102,6 +102,15 @@ app.post("/api/task/create", (req,res) => {
     });
 });
 
+app.get('api/task/getUsers', (req,res) => {
+  try {
+    const users = User.find({admin: false})
+    res.status(200).send(users)
+  } catch (error) {
+    res.status(400).json(error);
+  }
+})
+
 app.get('/api/task/admin', async (req,res) => {
   try {
     const tasks = await Task.find()
@@ -136,10 +145,6 @@ app.post('/api/task/update', async (req,res) => {
     res.status(400).json(error);
   }
 })
-
-// TOODO
-// list users (excluding admins) for TaskCreator
-// list filtered list of users when an admin clicks on their name
 
 // PRODUCTION 
 
