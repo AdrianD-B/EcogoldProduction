@@ -9,7 +9,7 @@ function TaskViewer() {
 
   const { auth } = useContext(AuthContext);
 
-  const [buttonPopup, setButtonPopup] = useState(false);
+  const [buttonPopup, setButtonPopup] = useState({visibility: false, progress: "", quantity: "", _id: ""});
   const [creatorPage, setCreatorPage] = useState(false);
   
   const [data, setData] = useState([
@@ -19,7 +19,12 @@ function TaskViewer() {
 
   const handleProgressUpdate = async (quantity, progress, _id) => {
     
-    if (progress>=quantity) {progress=quantity}
+    if (progress>=quantity) 
+    {
+      console.log(progress)
+      progress=quantity
+      console.log(progress)
+    }
     try {
       const response = await axios.post("http://localhost:3001/api/task/update", {progress, _id},
         {
@@ -27,7 +32,6 @@ function TaskViewer() {
           withCredentials: false
         });
       console.log(response)
-      console.log(progress)
     } catch (error) {
       console.log(error.response.data)
     }
@@ -50,8 +54,23 @@ function TaskViewer() {
     }
   }
 
+  const handleDataUser = async () => {
+    try {
+      const response = await axios.get(`http://localhost:3001/api/task/user?name=${auth.name}`, 
+      {
+        headers: { 'Content-Type': 'application/json' },
+        withCredentials: false
+      });
+      let result = response.data;
+
+      setData(result)
+    } catch (error) {
+      console.log(error.response.data)
+    }
+  }
+
   useEffect(()=>{
-    handleDataAdmin();
+    !auth.admin ? handleDataUser() : handleDataAdmin()
   },[])
 
 
@@ -60,7 +79,7 @@ function TaskViewer() {
       console.log(`Progress Saved for row ${_id}`)
       handleProgressUpdate(quantity, progress, _id)
     }
-    else if (progress >= quantity) { setButtonPopup(true) }
+    else if (progress >= quantity) { setButtonPopup({visibility: true, progress: progress, quantity: quantity, _id: _id}) }
     console.log(progress)
 
     
@@ -74,7 +93,7 @@ function TaskViewer() {
   return (
     <>
     {
-      auth.admin ?
+      !auth.admin ?
         (<div className='taskviewer-container'>
 
           <h2> TaskViewer </h2>
@@ -117,9 +136,9 @@ function TaskViewer() {
 
 
 
-          <Popup className="popup-progress" trigger={buttonPopup} setTrigger={setButtonPopup}>
+          <Popup className="popup-progress" trigger={buttonPopup.visibility} setTrigger={setButtonPopup}>
             <p>Are you sure you have completed this task?</p>
-            <ButtonComponent buttonClass="enter-button" type="submit" buttonText={"Yes"} onClick = {handleProgressUpdate} />
+            <ButtonComponent buttonClass="enter-button" type="submit" buttonText={"Yes"} onClick = {() => handleProgressUpdate(buttonPopup.quantity, buttonPopup.progress, buttonPopup._id)} />
           </Popup>
         </div >)
         : creatorPage ? <TaskCreator setCreatorPage={setCreatorPage}/> :(<div className='taskviewer-container'>
