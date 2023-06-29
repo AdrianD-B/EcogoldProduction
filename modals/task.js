@@ -32,7 +32,7 @@ const taskSchema = mongoose.Schema({
     date: {
         type: Date,
         required: true,
-        default: () => Date.now()
+        default: () => new Date().toLocaleDateString('en-CA', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\//g, '-')
     },
     progress: {
         type: Number,

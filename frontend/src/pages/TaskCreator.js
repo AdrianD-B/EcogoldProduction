@@ -5,7 +5,7 @@ import axios from "axios"
 
 
 function TaskCreator({ setCreatorPage }) {
-  const [formDetails, setFormDetails] = useState([])
+  const [formDetails, setFormDetails] = useState({})
   const [users, setUsers] = useState([{_id: 0, name:"test"}])
 
   const handleFormInputChange = (e) => {
@@ -17,6 +17,7 @@ function TaskCreator({ setCreatorPage }) {
 
   const handleTaskCreation = async (e) => {
     e.preventDefault()
+    console.log(formDetails)
     try {
       const response = await axios.post("http://localhost:3001/api/task/create", formDetails,
         {
@@ -53,16 +54,14 @@ function TaskCreator({ setCreatorPage }) {
       <form className="task-creation-form" onSubmit={handleTaskCreation}>
         <div>
         <input className="login-form-item" list="userlist" name="name" onChange={handleFormInputChange} />
-        
           {users.length > 0 && (
           <datalist id="userlist">
           {users.map(user => (
             <option key={user._id} value={user.name} />
             
           ))}
-
-
-        </datalist>)}
+        </datalist>
+        )}
             
         <FormInput
           inputClass="login-form-item"
@@ -107,19 +106,12 @@ function TaskCreator({ setCreatorPage }) {
           <option value="Cutting" />
           <option value="Sewing" />
           <option value="Prep" />
-
         </datalist>
-
-
         <ButtonComponent buttonClass="page-switch-button" onClick={() => setCreatorPage(false)} buttonText="Task Viewer" />
         <button type="submit" className="create-task-button-container"><ButtonComponent buttonClass="create-task-button" buttonText="Create Task" /></button>
         </div>
-       
       </form>
-      
-      
     </div >
-
   )
 }
 

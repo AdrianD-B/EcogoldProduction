@@ -3,10 +3,7 @@ import ButtonComponent from '../components/ButtonComponent'
 import Popup from '../components/Popup'
 import AuthContext from '../context/AuthProvider';
 import axios from "axios"
-
-
-
-
+import TaskCreator from './TaskCreator';
 
 
 function TaskViewer() {
