@@ -19,7 +19,7 @@ function TaskCreator({ setCreatorPage }) {
     e.preventDefault()
     console.log(formDetails)
     try {
-      const response = await axios.post("http://localhost:3001/api/task/create", formDetails,
+      const response = await axios.post("https://ecogoldproduction.onrender.com/api/task/create", formDetails,
         {
           headers: { 'Content-Type': 'application/json' },
           withCredentials: false
@@ -31,7 +31,7 @@ function TaskCreator({ setCreatorPage }) {
   }
   const getUsers = async () => {
     try {
-      const response = await axios.get("http://localhost:3001/api/task/getUsers",
+      const response = await axios.get("https://ecogoldproduction.onrender.com/api/task/getUsers",
         {
           headers: { 'Content-Type': 'application/json' },
           withCredentials: false

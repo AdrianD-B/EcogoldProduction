@@ -26,7 +26,7 @@ function TaskViewer() {
       console.log(progress)
     }
     try {
-      const response = await axios.post("http://localhost:3001/api/task/update", {progress, _id},
+      const response = await axios.post("https://ecogoldproduction.onrender.com/api/task/update", {progress, _id},
         {
           headers: { 'Content-Type': 'application/json' },
           withCredentials: false
@@ -41,7 +41,7 @@ function TaskViewer() {
 
   const handleDataAdmin = async () => {
     try {
-      const response = await axios.get(`http://localhost:3001/api/task/admin`, 
+      const response = await axios.get(`https://ecogoldproduction.onrender.com/api/task/admin`, 
       {
         headers: { 'Content-Type': 'application/json' },
         withCredentials: false
@@ -56,7 +56,7 @@ function TaskViewer() {
 
   const handleDataUser = async () => {
     try {
-      const response = await axios.get(`http://localhost:3001/api/task/user?name=${auth.name}`, 
+      const response = await axios.get(`https://ecogoldproduction.onrender.com/api/task/user?name=${auth.name}`, 
       {
         headers: { 'Content-Type': 'application/json' },
         withCredentials: false

@@ -14,7 +14,7 @@ function Login({ setLogToggle }) {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3001/api/user/login',formDetails,
+      const response = await axios.post('https://ecogoldproduction.onrender.com/api/user/login',formDetails,
       {
         headers: {'Content-Type': 'application/json'},
         withCredentials: false

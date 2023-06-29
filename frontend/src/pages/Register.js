@@ -12,7 +12,7 @@ function Register({setLogToggle}) {
     e.preventDefault();
     if(formDetails.invitation === code){
       try {
-        const response = await axios.post('http://localhost:3001/api/user',formDetails,
+        const response = await axios.post('https://ecogoldproduction.onrender.com/api/user',formDetails,
         {
           headers: {'Content-Type': 'application/json'},
           withCredentials: false

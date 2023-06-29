@@ -17,7 +17,7 @@ function App() {
     let token = cookies.x_auth
     if (auth.email === undefined && token !== undefined) {
       try {
-        const response = await axios.get(`http://localhost:3001/api/user/token?token=${token}`, 
+        const response = await axios.get(`https://ecogoldproduction.onrender.com/api/user/token?token=${token}`, 
         {
           headers: { 'Content-Type': 'application/json' },
           withCredentials: false
