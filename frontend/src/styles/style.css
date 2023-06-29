@@ -13,6 +13,8 @@ h1{
     font-size: 25;
 }
 h2{
+    position: fixed;
+    top: 70px;
     background-color:grey;
     padding: 5px;
 }
@@ -42,7 +44,7 @@ b{
 
 .login-container,.register-container{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     flex-direction: row;
     width: 1000px;
@@ -89,7 +91,7 @@ b{
 /* Task Viewer/Maker pages */
 .taskviewer-container, .taskcreator-container{
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     flex-direction: column;
     width: 1000px;
@@ -200,9 +202,27 @@ b{
 table {
     border: 2px solid forestgreen;
     width: 800px;
-    height: 200px;
+    height: 50px;
     align-items: center;
     margin: auto;
+    overflow-y: scroll;
+    
+}
+
+.table-container {
+    position: fixed;
+    top: 250px;
+    min-height: 50px;
+    max-height: 500px;
+    padding: 0 10px 10px 10px;
+    overflow-y: scroll;
+}
+
+thead {
+    background-color: grey;
+    position: sticky;
+    top: 0px;
+    margin: 0 0 0 0;
 }
  
 th {
