@@ -2,9 +2,8 @@ import React, { useState, useContext, useEffect } from 'react'
 import ButtonComponent from '../components/ButtonComponent'
 import Popup from '../components/Popup'
 import AuthContext from '../context/AuthProvider';
-import axios from "axios"
 import TaskCreator from './TaskCreator';
-
+import axios from "axios"
 
 function TaskViewer() {
 
@@ -75,7 +74,7 @@ function TaskViewer() {
   return (
     <>
     {
-      !auth.admin ?
+      auth.admin ?
         (<div className='taskviewer-container'>
 
           <h2> TaskViewer </h2>
@@ -123,7 +122,7 @@ function TaskViewer() {
             <ButtonComponent buttonClass="enter-button" type="submit" buttonText={"Yes"} onClick = {handleProgressUpdate} />
           </Popup>
         </div >)
-        : (<div className='taskviewer-container'>
+        : creatorPage ? <TaskCreator setCreatorPage={setCreatorPage}/> :(<div className='taskviewer-container'>
 
           <h2> TaskViewer </h2>
           <table>
@@ -155,6 +154,5 @@ function TaskViewer() {
       </>
     )
 }
-// onClick={"function for axios post"} <button className="progress-button" onClick={() => setButtonPopup(true)}>Edit Progress</button>
-//<ButtonComponent buttonClass="progress-button" onClick={() => setButtonPopup(true)} buttonText="Edit Progress"/>
+
 export default TaskViewer
