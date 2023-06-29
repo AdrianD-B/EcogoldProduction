@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "client": "npm start --prefix ./frontend",
+    "clientinstall": "npm install --prefix ./frontend",
+    "render-postbuild": "NPM_CONFIG_PRODUCTION=false && npm install --prefix ./frontend && npm run build --prefix ./frontend"
   },
   "author": "",
   "license": "ISC",
