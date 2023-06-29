@@ -70,7 +70,7 @@ function TaskViewer() {
   }
 
   useEffect(()=>{
-    !auth.admin ? handleDataUser() : handleDataAdmin()
+    auth.admin ? handleDataUser() : handleDataAdmin()
   },[])
 
 
@@ -93,12 +93,13 @@ function TaskViewer() {
   return (
     <>
     {
-      !auth.admin ?
+      auth.admin ?
         (<div className='taskviewer-container'>
 
           <h2> TaskViewer </h2>
+          <div className='table-container'>
           <table>
-            <tr>
+            <thead>
               <th>Model</th>
               <th>Color</th>
               <th>Size</th>
@@ -106,7 +107,7 @@ function TaskViewer() {
               <th>Description</th>
               <th>Task</th>
               <th>Progress</th>
-            </tr>
+            </thead>
             {data.map((val, key) => {
               return (
                 <tr key={key}>
@@ -133,6 +134,7 @@ function TaskViewer() {
               )
             })}
           </table>
+          </div>
 
 
 
@@ -144,16 +146,18 @@ function TaskViewer() {
         : creatorPage ? <TaskCreator setCreatorPage={setCreatorPage}/> :(<div className='taskviewer-container'>
 
           <h2> TaskViewer </h2>
+          <div className='table-container'>
           <table>
-            <tr>
+            <thead>
               <th>Name</th>
               <th>Model</th>
               <th>Color</th>
               <th>Size</th>
               <th>Quantity</th>
               <th>Task</th>
+              <th>Date</th>
               <th>Progress</th>
-            </tr>
+            </thead>
             {data.map((val, key) => {
               return (
                 <tr key={key}>
@@ -163,11 +167,13 @@ function TaskViewer() {
                   <td>{val.size}</td>
                   <td>{val.quantity}</td>
                   <td>{val.task}</td>
+                  <td>{val.date.slice(0,10)}</td>
                   <td>{val.progress}</td>
                 </tr>
               )
             })}
           </table>
+          </div>
           <ButtonComponent buttonClass="page-switch-button" onClick={() => setCreatorPage(true)} buttonText="Task Creator" />
         </div >)}
       </>
