@@ -104,7 +104,7 @@ function TaskCreator({ setCreatorPage }) {
         <input className="login-form-item" list="tasks" name="task" onChange={handleFormInputChange} />
         <datalist id="tasks">
           <option value="Cutting" />
-          <option value="Sewing" />
+          <option value="Sowing" />
           <option value="Prep" />
         </datalist>
         <ButtonComponent buttonClass="page-switch-button" onClick={() => setCreatorPage(false)} buttonText="Task Viewer" />

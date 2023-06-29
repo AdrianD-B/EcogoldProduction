@@ -70,7 +70,7 @@ function TaskViewer() {
   }
 
   useEffect(()=>{
-    auth.admin ? handleDataUser() : handleDataAdmin()
+    !auth.admin ? handleDataUser() : handleDataAdmin()
   },[])
 
 
@@ -93,7 +93,7 @@ function TaskViewer() {
   return (
     <>
     {
-      auth.admin ?
+      !auth.admin ?
         (<div className='taskviewer-container'>
 
           <h2> TaskViewer </h2>
