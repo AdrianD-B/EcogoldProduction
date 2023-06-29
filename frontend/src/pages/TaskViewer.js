@@ -10,6 +10,7 @@ function TaskViewer() {
   const { auth, setLoggedIn } = useContext(AuthContext);
 
   const [buttonPopup, setButtonPopup] = useState({visibility: false, progress: "", quantity: "", _id: ""});
+  const [confirmPopup, setConfirmPopup] = useState(false)
   const [creatorPage, setCreatorPage] = useState(false);
   
   const [data, setData] = useState([
@@ -32,6 +33,7 @@ function TaskViewer() {
           withCredentials: false
         });
       console.log(response)
+      setConfirmPopup(true)
     } catch (error) {
       console.log(error.response.data)
     }
@@ -70,7 +72,7 @@ function TaskViewer() {
   }
 
   useEffect(()=>{
-    auth.admin ? handleDataUser() : handleDataAdmin()
+    !auth.admin ? handleDataUser() : handleDataAdmin()
   },[])
 
 
@@ -107,7 +109,7 @@ function TaskViewer() {
   return (
     <>
     {
-      auth.admin ?
+      !auth.admin ?
         (<div className='taskviewer-container'>
           <ButtonComponent buttonText="Logout" buttonClass="logout-button" onClick={() => handleLogout()}/>
           <h2> TaskViewer </h2>
@@ -150,14 +152,15 @@ function TaskViewer() {
             })}
           </table>
           </div>
-
-
-
           <Popup className="popup-progress" trigger={buttonPopup.visibility} setTrigger={setButtonPopup}>
             <p>Are you sure you have completed this task?</p>
             <ButtonComponent buttonClass="enter-button" type="submit" buttonText={"Yes"} onClick = {() => handleProgressUpdate(buttonPopup.quantity, buttonPopup.progress, buttonPopup._id)} />
           </Popup>
+          <Popup className="popup-save" trigger={confirmPopup} setTrigger={setConfirmPopup}>
+            <p>Progress saved for entry!</p>
+          </Popup>
         </div >)
+
         : creatorPage ? <TaskCreator setCreatorPage={setCreatorPage}/> :(<div className='taskviewer-container'>
 
           <ButtonComponent buttonText="Logout" buttonClass="logout-button" onClick={() => handleLogout()}/>
