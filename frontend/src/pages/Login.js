@@ -71,7 +71,7 @@ function Login({ setLogToggle }) {
             ></ButtonComponent>
           </button>
           <p className="login-form-item">
-            Don't have an account? sign up{" "}
+            Don't have an account? Sign up{" "}
             <b onClick={() => setLogToggle(false)}>here</b>
           </p>
         </form>

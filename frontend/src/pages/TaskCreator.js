@@ -53,32 +53,35 @@ function TaskCreator({ setCreatorPage }) {
       <h2> TaskCreator </h2>
       <form className="task-creation-form" onSubmit={handleTaskCreation}>
         <div>
-        <input className="login-form-item" list="userlist" name="name" onChange={handleFormInputChange} />
-          {users.length > 0 && (
-          <datalist id="userlist">
-          {users.map(user => (
-            <option key={user._id} value={user.name} />
-            
-          ))}
-        </datalist>
-        )}
+        <div className="input-form-container">
+          <h4>Name</h4>
+          <input className="creation-form-item" list="userlist" name="name" onChange={handleFormInputChange} />
+            {users.length > 0 && (
+            <datalist id="userlist">
+            {users.map(user => (
+              <option key={user._id} value={user.name} />
+              
+            ))}
+          </datalist>
+          )}
+        </div>
             
         <FormInput
-          inputClass="login-form-item"
+          inputClass="creation-form-item"
           value={formDetails.model}
           onChange={handleFormInputChange}
           inputType="string"
           header="Model"
         />
         <FormInput
-          inputClass="login-form-item"
+          inputClass="creation-form-item"
           value={formDetails.description}
           onChange={handleFormInputChange}
           inputType="string"
           header="Description"
         />
         <FormInput
-          inputClass="login-form-item"
+          inputClass="creation-form-item"
           value={formDetails.color}
           onChange={handleFormInputChange}
           inputType="string"
@@ -87,26 +90,28 @@ function TaskCreator({ setCreatorPage }) {
         </div>
         <div>
         <FormInput
-          inputClass="login-form-item"
+          inputClass="creation-form-item"
           value={formDetails.size}
           onChange={handleFormInputChange}
           inputType="string"
           header="Size"
         />
         <FormInput
-          inputClass="login-form-item"
+          inputClass="creation-form-item"
           value={formDetails.quantity}
           onChange={handleFormInputChange}
           inputType="number"
           header="Quantity"
         />
-
-        <input className="login-form-item" list="tasks" name="task" onChange={handleFormInputChange} />
-        <datalist id="tasks">
-          <option value="Cutting" />
-          <option value="Sowing" />
-          <option value="Prep" />
-        </datalist>
+        <div className="input-form-container">
+          <h4>Task</h4>
+          <input className="creation-form-item" list="tasks" name="task" onChange={handleFormInputChange} />
+          <datalist id="tasks">
+            <option value="Cutting" />
+            <option value="Sowing" />
+            <option value="Prep" />
+          </datalist>
+        </div>
         <ButtonComponent buttonClass="page-switch-button" onClick={() => setCreatorPage(false)} buttonText="Task Viewer" />
         <button type="submit" className="create-task-button-container"><ButtonComponent buttonClass="create-task-button" buttonText="Create Task" /></button>
         </div>

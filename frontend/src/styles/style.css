@@ -15,7 +15,7 @@ h1{
 h2{
     position: fixed;
     top: 70px;
-    background-color:grey;
+    
     padding: 5px;
 }
 h3{
@@ -58,8 +58,9 @@ b{
     margin: auto;
 }
 
-.login-form-item,.register-form-item{
+.login-form-item,.register-form-item,.creation-form-item{
     display: flex;
+    
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -73,6 +74,14 @@ b{
     padding: 10px;
     font-weight: bold;
     border: none
+}
+
+.input-form-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
 }
 
 .login-side-container,.register-side-container{
@@ -174,31 +183,64 @@ b{
     border-width: 2px;
     border-color: black;
 }
-.enter-button, .create-task-button {
+.enter-button {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 40%;
+    flex-direction: row;
+    width: 60%;
     background-color: black;
     padding: 10px;
+    cursor: pointer;
     
 }
+.create-task-button {
+    position: fixed;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    
+    background-color: black;
+    padding: 10px;
+    cursor: pointer;
+}
+
 .page-switch-button{
     position: absolute;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
     top: 100px;
     right: 210px;
     background-color: black;
     padding: 10px;
-
-
+    cursor: pointer;
 }
+
+.logout-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    position: fixed;
+    top: 100px;
+    left: 210px;
+    background-color: black;
+    padding: 10px;
+    cursor: pointer;
+}
+
 .close-button{
     position:absolute;
     top: 16px;
     right: 16px;
-
 }
+
 table {
     border: 2px solid forestgreen;
     width: 800px;

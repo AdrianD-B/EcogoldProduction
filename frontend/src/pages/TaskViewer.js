@@ -70,7 +70,7 @@ function TaskViewer() {
   }
 
   useEffect(()=>{
-    !auth.admin ? handleDataUser() : handleDataAdmin()
+    auth.admin ? handleDataUser() : handleDataAdmin()
   },[])
 
 
@@ -107,11 +107,11 @@ function TaskViewer() {
   return (
     <>
     {
-      !auth.admin ?
+      auth.admin ?
         (<div className='taskviewer-container'>
-
+          <ButtonComponent buttonText="Logout" buttonClass="logout-button" onClick={() => handleLogout()}/>
           <h2> TaskViewer </h2>
-          <ButtonComponent buttonText="Logout" buttonClass="enter-button" onClick={() => handleLogout()}/>
+          
           <div className='table-container'>
           <table>
             <thead>
@@ -160,8 +160,9 @@ function TaskViewer() {
         </div >)
         : creatorPage ? <TaskCreator setCreatorPage={setCreatorPage}/> :(<div className='taskviewer-container'>
 
+          <ButtonComponent buttonText="Logout" buttonClass="logout-button" onClick={() => handleLogout()}/>
           <h2> TaskViewer </h2>
-          <ButtonComponent buttonText="Logout" buttonClass="enter-button" onClick={() => handleLogout()}/>
+          
           <div className='table-container'>
           <table>
             <thead>
