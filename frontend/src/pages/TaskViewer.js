@@ -7,7 +7,7 @@ import axios from "axios"
 
 function TaskViewer() {
 
-  const { auth } = useContext(AuthContext);
+  const { auth, setLoggedIn } = useContext(AuthContext);
 
   const [buttonPopup, setButtonPopup] = useState({visibility: false, progress: "", quantity: "", _id: ""});
   const [creatorPage, setCreatorPage] = useState(false);
@@ -90,6 +90,20 @@ function TaskViewer() {
     setData(updatedData);
   };
 
+  const handleLogout = async () => {
+    try {
+      const response = await axios.get(`https://ecogoldproduction.onrender.com/api/user/logout`, 
+      {
+        headers: { 'Content-Type': 'application/json' },
+        withCredentials: false
+      });
+      console.log(response.data)
+      setLoggedIn(false)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <>
     {
@@ -97,6 +111,7 @@ function TaskViewer() {
         (<div className='taskviewer-container'>
 
           <h2> TaskViewer </h2>
+          <ButtonComponent buttonText="Logout" buttonClass="enter-button" onClick={() => handleLogout()}/>
           <div className='table-container'>
           <table>
             <thead>
@@ -146,6 +161,7 @@ function TaskViewer() {
         : creatorPage ? <TaskCreator setCreatorPage={setCreatorPage}/> :(<div className='taskviewer-container'>
 
           <h2> TaskViewer </h2>
+          <ButtonComponent buttonText="Logout" buttonClass="enter-button" onClick={() => handleLogout()}/>
           <div className='table-container'>
           <table>
             <thead>
