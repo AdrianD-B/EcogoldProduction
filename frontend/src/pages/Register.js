@@ -9,7 +9,6 @@ function Register({setRegisterPage}) {
   const [formDetails,setFormDetails] = useState({});
   const [confirmPopup, setConfirmPopup] = useState(false)
   const [failurePopup, setFailurePopup] = useState(false)
-  const code = process.env.REACT_APP_INV_CODE
 
   const handleRegister = async (e) => {
     e.preventDefault();
