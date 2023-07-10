@@ -1,16 +1,19 @@
 import React, { useState,useContext } from "react";
 import FormInput from "../components/FormInput";
+import Popup from '../components/Popup'
 import ButtonComponent from "../components/ButtonComponent";
 import axios from "axios";
 //context variable for register
 
-function Register({setLogToggle}) {
+function Register({setRegisterPage}) {
   const [formDetails,setFormDetails] = useState({});
+  const [confirmPopup, setConfirmPopup] = useState(false)
+  const [failurePopup, setFailurePopup] = useState(false)
   const code = process.env.REACT_APP_INV_CODE
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    if(formDetails.invitation === code){
+    
       try {
         const response = await axios.post('https://ecogoldproduction.onrender.com/api/user',formDetails,
         {
@@ -18,13 +21,13 @@ function Register({setLogToggle}) {
           withCredentials: false
         });
         console.log(response.data)
-        setLogToggle(true)
+        setConfirmPopup(true)
+        //setLogToggle(true)
       } catch (error) {
         console.log(error.response.data)
+        setFailurePopup(true)
       }
-    }else{
-      console.log('invalid invitation code')
-    }
+    
   }
 
   const handleFormInputChange = (e) => {
@@ -60,13 +63,6 @@ function Register({setLogToggle}) {
         />
         <FormInput
           inputClass="register-form-item"
-          inputType="text"
-          value={formDetails.invitation}
-          onChange={handleFormInputChange}
-          header="Invitation"
-        />
-        <FormInput
-          inputClass="register-form-item"
           inputType="password"
           value={formDetails.password}
           onChange={handleFormInputChange}
@@ -79,6 +75,13 @@ function Register({setLogToggle}) {
           />
         </button>
       </form>
+      <ButtonComponent buttonClass="register-switch-button" onClick={() => setRegisterPage(false)} buttonText="Task Viewer" />
+      <Popup className="popup-register-confirm" trigger={confirmPopup} setTrigger={setConfirmPopup}>
+            <p>New user registered!</p>
+      </Popup>
+      <Popup className="popup-register-failure" trigger={failurePopup} setTrigger={setFailurePopup}>
+            <p>Failure to register user, please try again.</p>
+      </Popup>
     </div>
   );
 }
