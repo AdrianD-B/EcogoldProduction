@@ -157,7 +157,7 @@ b{
         transform: rotate(-45deg);}
 }
 
-.popup,.popup-progress {
+.popup,.popup-progress, .popup-register-confirm,.popup-register-failure {
     position: fixed;
     top: 200px;
     left: 500px;
@@ -170,7 +170,7 @@ b{
 
 .popup-inner{
     position: fixed;
-    top: 70%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     display: flex;
@@ -234,6 +234,20 @@ b{
     padding: 10px;
     cursor: pointer;
 }
+
+.register-switch-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    position: fixed;
+    top: 170px;
+    left: 210px;
+    background-color: black;
+    padding: 10px;
+    cursor: pointer;
+}
+
 
 .close-button{
     position:absolute;

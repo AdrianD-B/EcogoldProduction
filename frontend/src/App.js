@@ -10,7 +10,7 @@ import axios from "axios";
 
 function App() {
   const { auth,setAuth,loggedIn,setLoggedIn } = useContext(AuthContext);
-  const [logToggle, setLogToggle] = useState(true);
+  //const [logToggle, setLogToggle] = useState(true);
   const [cookies, setCookie] = useCookies()
 
   const handleAuth = async () => {
@@ -38,11 +38,9 @@ function App() {
   return (
     <div className="App">
       {!loggedIn ? (
-        logToggle ? (
-          <Login setLogToggle={setLogToggle} />
-        ) : (
-          <Register />
-        )
+         (
+          <Login />
+        ) 
       ) : <TaskViewerUser />}
       
     </div>

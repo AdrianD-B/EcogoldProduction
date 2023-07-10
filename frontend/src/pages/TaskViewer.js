@@ -3,6 +3,7 @@ import ButtonComponent from '../components/ButtonComponent'
 import Popup from '../components/Popup'
 import AuthContext from '../context/AuthProvider';
 import TaskCreator from './TaskCreator';
+import Register from './Register';
 import axios from "axios"
 
 function TaskViewer() {
@@ -12,6 +13,7 @@ function TaskViewer() {
   const [buttonPopup, setButtonPopup] = useState({visibility: false, progress: "", quantity: "", _id: ""});
   const [confirmPopup, setConfirmPopup] = useState(false)
   const [creatorPage, setCreatorPage] = useState(false);
+  const [registerPage, setRegisterPage] = useState(false);
   
   const [data, setData] = useState([
     { name: "", model: "", description:"",  size: "", color: "", quantity: 0, task: "", date:"", progress: 0 }
@@ -72,7 +74,7 @@ function TaskViewer() {
   }
 
   useEffect(()=>{
-    !auth.admin ? handleDataUser() : handleDataAdmin()
+    auth.admin ? handleDataUser() : handleDataAdmin()
   },[])
 
 
@@ -109,7 +111,7 @@ function TaskViewer() {
   return (
     <>
     {
-      !auth.admin ?
+      auth.admin ?
         (<div className='taskviewer-container'>
           <ButtonComponent buttonText="Logout" buttonClass="logout-button" onClick={() => handleLogout()}/>
           <h2> TaskViewer </h2>
@@ -161,9 +163,12 @@ function TaskViewer() {
           </Popup>
         </div >)
 
-        : creatorPage ? <TaskCreator setCreatorPage={setCreatorPage}/> :(<div className='taskviewer-container'>
+        : creatorPage ? <TaskCreator setCreatorPage={setCreatorPage}/> 
+        : registerPage ? <Register setRegisterPage={setRegisterPage}/> :(<div className='taskviewer-container'>
+          
 
           <ButtonComponent buttonText="Logout" buttonClass="logout-button" onClick={() => handleLogout()}/>
+          <ButtonComponent buttonClass="register-switch-button" onClick={() => setRegisterPage(true)} buttonText="Register New User" />
           <h2> TaskViewer </h2>
           
           <div className='table-container'>
@@ -195,6 +200,7 @@ function TaskViewer() {
           </table>
           </div>
           <ButtonComponent buttonClass="page-switch-button" onClick={() => setCreatorPage(true)} buttonText="Task Creator" />
+          
         </div >)}
       </>
     )

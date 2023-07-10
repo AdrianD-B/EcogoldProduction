@@ -5,7 +5,7 @@ import ButtonComponent from "../components/ButtonComponent";
 import FormInput from "../components/FormInput";
 import { useCookies } from "react-cookie";
 
-function Login({ setLogToggle }) {
+function Login() {
   const { setAuth,setLoggedIn } = useContext(AuthContext);
   const [formDetails, setFormDetails] = useState({});
   const formRef = useRef();
@@ -70,10 +70,6 @@ function Login({ setLogToggle }) {
               buttonText="Login"
             ></ButtonComponent>
           </button>
-          <p className="login-form-item">
-            Don't have an account? Sign up{" "}
-            <b onClick={() => setLogToggle(false)}>here</b>
-          </p>
         </form>
       </div>
     </>
