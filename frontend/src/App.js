@@ -7,6 +7,7 @@ import TaskViewerUser from "./pages/TaskViewer";
 import { useCookies } from "react-cookie";
 import "./styles/style.css";
 import axios from "axios";
+import { Notifications } from 'react-push-notification';
 
 function App() {
   const { auth,setAuth,loggedIn,setLoggedIn } = useContext(AuthContext);
@@ -37,6 +38,7 @@ function App() {
   }, [])
   return (
     <div className="App">
+      <Notifications/>
       {!loggedIn ? (
         logToggle ? (
           <Login setLogToggle={setLogToggle} />
