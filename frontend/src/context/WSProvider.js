@@ -9,11 +9,11 @@ export const WSProvider = ({ children }) => {
   useEffect(() => {
     const ws = new WebSocket("wss://ecogoldproduction.onrender.com/ws");
 
-    setTimeout(()=> {
+    ws.onopen =()=>{
       console.log("WebSocket connection opened");
       ws.send(JSON.stringify({ event: 'login', data: auth.name }));
-    },5000)
-
+    }
+    
     setSocket(ws);
     return () => {
       ws.close();
