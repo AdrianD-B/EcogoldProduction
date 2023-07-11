@@ -30,7 +30,7 @@ mongoose.connection.on("error", (err) => {
 });
 
 // WEBSOCKET
-const wss = new WebSocket.Server({server})
+const wss = new WebSocket.Server({server, path: '/ws'})
 const clients = new Map()
 
 wss.on('connection', (ws) => {
