@@ -2,14 +2,14 @@ const express = require("express");
 const port = 3001;
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
-const http = require('http')
+const https = require('https')
 const mongoose = require("mongoose");
 const cors = require("cors");
 const path = require("path");
 const WebSocket = require('ws')
 require("dotenv").config();
 const app = express();
-const server = http.createServer(app)
+const server = https.createServer(app)
 
 
 // MIDDLEWARES
