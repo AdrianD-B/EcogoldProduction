@@ -6,7 +6,7 @@ import FormInput from "../components/FormInput";
 import { useCookies } from "react-cookie";
 
 function Login() {
-  const { setAuth, setLoggedIn, socket } = useContext(AuthContext);
+  const { setAuth, setLoggedIn } = useContext(AuthContext);
   const [formDetails, setFormDetails] = useState({});
   const formRef = useRef();
   const [cookies, setCookie] = useCookies();
@@ -32,11 +32,6 @@ function Login() {
           admin: response.data.admin,
         });
         setCookie("x_auth", response.data.token);
-        socket.onopen = () => {
-          socket.send(
-            JSON.stringify({ event: "login", data: response.data.name })
-          );
-        };
         setLoggedIn(true);
       }
     } catch (error) {

@@ -5,11 +5,13 @@ import addNotification from "react-push-notification";
 import ButtonComponent from "../components/ButtonComponent";
 import Popup from "../components/Popup";
 import AuthContext from "../context/AuthProvider";
+import WSContext from "../context/WSProvider";
 import TaskCreator from "./TaskCreator";
 import Register from "./Register";
 
 function TaskViewer() {
-  const { auth, setLoggedIn, socket } = useContext(AuthContext);
+  const { auth, setLoggedIn } = useContext(AuthContext);
+  const { socket } = useContext(WSContext);
 
   const [buttonPopup, setButtonPopup] = useState({
     visibility: false,

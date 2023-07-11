@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
 import ButtonComponent from "../components/ButtonComponent";
 import FormInput from "../components/FormInput";
-import AuthContext from "../context/AuthProvider";
+import WSContext from "../context/WSProvider";
 import axios from "axios";
 
 function TaskCreator({ setCreatorPage }) {
   const [formDetails, setFormDetails] = useState({});
   const [users, setUsers] = useState([{ _id: 0, name: "test" }]);
-  const { socket } = useContext(AuthContext);
+  const { socket } = useContext(WSContext);
 
   const handleFormInputChange = (e) => {
     setFormDetails({

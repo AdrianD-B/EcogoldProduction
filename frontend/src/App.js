@@ -7,6 +7,7 @@ import { useCookies } from "react-cookie";
 import "./styles/style.css";
 import axios from "axios";
 import { Notifications } from 'react-push-notification';
+import { WSProvider } from "./context/WSProvider";
 
 function App() {
   const { auth,setAuth,loggedIn,setLoggedIn } = useContext(AuthContext);
@@ -37,7 +38,11 @@ function App() {
   return (
     <div className="App">
       <Notifications/>
-      {!loggedIn ? <Login /> : <TaskViewer />}
+      {!loggedIn ? <Login /> : (
+        <WSProvider>
+          <TaskViewer />
+        </WSProvider>
+      )}
     </div>
   );
 }
