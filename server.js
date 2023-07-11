@@ -38,6 +38,7 @@ wss.on('connection', (ws) => {
   console.log("A new client is connected")
 
   ws.on('login', (data) => {
+    console.log("Received login event");
     clientId = data;
     clients.set(clientId,ws)
     console.log("client is named: "+ clientId)
