@@ -105,7 +105,7 @@ function TaskViewer() {
   };
 
   useEffect(() => {
-    auth.admin ? handleDataUser() : handleDataAdmin();
+    !auth.admin ? handleDataUser() : handleDataAdmin();
   }, []);
 
   const saveProgress = (quantity, progress, _id) => {
