@@ -150,7 +150,7 @@ function TaskViewer() {
 
   return (
     <>
-      {auth.admin ? (
+      {!auth.admin ? (
         <div className="taskviewer-container">
           <ButtonComponent
             buttonText="Logout"
