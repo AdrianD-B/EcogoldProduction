@@ -183,6 +183,7 @@ function TaskViewer() {
                       <input
                         name="progress"
                         value={val.progress}
+                        style={{width: "30px"}}
                         type="number"
                         placeholder="0"
                         onChange={(e) => updateProgress(e, key)}
