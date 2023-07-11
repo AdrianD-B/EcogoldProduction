@@ -76,16 +76,20 @@ function TaskViewer() {
     }
   };
 
-  socket.onmessage = (event) => {
-    handleDataUser();
-    addNotification({
-      title: "Attention",
-      subtitle: "New Task Received",
-      message: event.data,
-      theme: "darkblue",
-      native: true,
-    });
-  };
+  useEffect(() => {
+    if (socket) {
+      socket.onmessage = (event) => {
+        handleDataUser();
+        addNotification({
+          title: "Attention",
+          subtitle: "New Task Received",
+          message: event.data,
+          theme: "darkblue",
+          native: true,
+        });
+      };
+    }
+  }, [socket]);
 
   const handleDataUser = async () => {
     try {
