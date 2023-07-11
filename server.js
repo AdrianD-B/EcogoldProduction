@@ -2,11 +2,15 @@ const express = require("express");
 const port = 3001;
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
+const http = require('http')
 const mongoose = require("mongoose");
 const cors = require("cors");
 const path = require("path");
+const WebSocket = require('ws')
 require("dotenv").config();
 const app = express();
+const server = http.createServer(app)
+
 
 // MIDDLEWARES
 app.use(bodyParser.json());
@@ -23,6 +27,37 @@ const mongoUri = process.env.MONGO_URI;
 mongoose.connect(mongoUri).catch((err) => console.log(err));
 mongoose.connection.on("error", (err) => {
   console.log(err);
+});
+
+// WEBSOCKET
+const wss = new WebSocket.Server({server})
+const clients = new Map()
+
+wss.on('connection', (ws) => {
+  let clientId = null
+  console.log("A new client is connected")
+
+  ws.on('login', (data) => {
+    clientId = data;
+    clients.set(clientId,ws)
+  })
+
+  ws.on('error', console.error);
+
+  ws.on('message', (message) => {
+    const { recipient, data } = JSON.parse(message);
+    const recipientClient = clients.get(recipient)
+
+    if(recipientClient){
+      recipientClient.send(data);
+    }
+  });
+
+  ws.on('close', ()=>{
+    if(clientId){
+      clients.delete(clientId)
+    }
+  })
 });
 
 // ROUTES
@@ -147,7 +182,7 @@ app.post('/api/task/update', async (req,res) => {
 
 // PRODUCTION 
 
-app.listen(port, () => {
+server.listen(port, () => {
   console.log(`Started on port: ${port}`);
 });
 

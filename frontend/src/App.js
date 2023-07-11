@@ -1,9 +1,8 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 
 import AuthContext from "./context/AuthProvider";
-import Register from "./pages/Register";
 import Login from "./pages/Login";
-import TaskViewerUser from "./pages/TaskViewer";
+import TaskViewer from "./pages/TaskViewer";
 import { useCookies } from "react-cookie";
 import "./styles/style.css";
 import axios from "axios";
@@ -11,7 +10,6 @@ import { Notifications } from 'react-push-notification';
 
 function App() {
   const { auth,setAuth,loggedIn,setLoggedIn } = useContext(AuthContext);
-  //const [logToggle, setLogToggle] = useState(true);
   const [cookies, setCookie] = useCookies()
 
   const handleAuth = async () => {
@@ -39,12 +37,7 @@ function App() {
   return (
     <div className="App">
       <Notifications/>
-      {!loggedIn ? (
-         (
-          <Login />
-        ) 
-      ) : <TaskViewerUser />}
-      
+      {!loggedIn ? <Login /> : <TaskViewer />}
     </div>
   );
 }

@@ -6,29 +6,41 @@ import FormInput from "../components/FormInput";
 import { useCookies } from "react-cookie";
 
 function Login() {
-  const { setAuth,setLoggedIn } = useContext(AuthContext);
+  const { setAuth, setLoggedIn, socket } = useContext(AuthContext);
   const [formDetails, setFormDetails] = useState({});
   const formRef = useRef();
-  const [cookies, setCookie] = useCookies()
+  const [cookies, setCookie] = useCookies();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('https://ecogoldproduction.onrender.com/api/user/login',formDetails,
-      {
-        headers: {'Content-Type': 'application/json'},
-        withCredentials: false
-      });
+      const response = await axios.post(
+        "https://ecogoldproduction.onrender.com/api/user/login",
+        formDetails,
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: false,
+        }
+      );
 
-      if(response.data.message === "User not found"){
-        console.log(response.data.message)
-      }else{
-        setAuth({name: response.data.name, email: formDetails.email, admin: response.data.admin})
-        setCookie("x_auth",response.data.token)
-        setLoggedIn(true)
+      if (response.data.message === "User not found") {
+        console.log(response.data.message);
+      } else {
+        setAuth({
+          name: response.data.name,
+          email: formDetails.email,
+          admin: response.data.admin,
+        });
+        setCookie("x_auth", response.data.token);
+        socket.onopen = () => {
+          socket.send(
+            JSON.stringify({ event: "login", data: response.data.name })
+          );
+        };
+        setLoggedIn(true);
       }
     } catch (error) {
-      console.log(error.response.data)
+      console.log(error.response.data);
     }
   };
 
