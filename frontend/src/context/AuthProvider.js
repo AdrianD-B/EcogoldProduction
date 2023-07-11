@@ -8,7 +8,7 @@ export const AuthProvider = ({children}) => {
     const [socket, setSocket] = useState(null)
 
     useEffect(()=>{
-        const ws = new WebSocket('ws://ecogoldproduction.onrender.com')
+        const ws = new WebSocket('wss://ecogoldproduction.onrender.com')
         setSocket(ws);
         return () => {
             ws.close();
