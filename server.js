@@ -40,7 +40,7 @@ wss.on('connection', (ws) => {
   ws.on('login', (data) => {
     clientId = data;
     clients.set(clientId,ws)
-    console.log("client is named: "+data)
+    console.log("client is named: "+ clientId)
   })
 
   ws.on('error', console.error);
