@@ -60,8 +60,6 @@ wss.on('connection', (ws) => {
       clients.delete(clientId)
     }
   })
-
-  ws.send(JSON.stringify({ event: 'serverReady' }));
 });
 
 // ROUTES
