@@ -12,7 +12,7 @@ export const WSProvider = ({ children }) => {
     setTimeout(()=> {
       console.log("WebSocket connection opened");
       ws.send(JSON.stringify({ event: 'login', data: auth.name }));
-    },1000)
+    },5000)
 
     setSocket(ws);
     return () => {
