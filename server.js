@@ -40,14 +40,14 @@ wss.on('connection', (ws) => {
   ws.on('error', console.error);
 
   ws.on('message', (message) => {
-    const { event, recipient, data } = JSON.parse(message);
-    if (event === "create") {
+    const { eventName, recipient, data } = JSON.parse(message);
+    if (eventName === "create") {
       const recipientClient = clients.get(recipient)
 
       if (recipientClient) {
         recipientClient.send(data);
       }
-    } else if (event === "login") {
+    } else if (eventName === "login") {
       console.log("Received login event");
       clientId = data;
       clients.set(clientId, ws)
