@@ -105,16 +105,17 @@ b{
 }
 
 /* Components */
-.login-button-container,.register-button-container, .create-task-button-container{
+.login-button-container,.register-button-container, .create-task-button-container,.button-container{
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     flex-direction: row;
     background-color: black;
     border: none;
-    width: 60%;
+    width: 70%;
+    height: auto;
     padding: 0;
-    margin: auto;
+    margin: 0 auto;
 }
 
 .login-button,.register-button,.create-task-button,.page-switch-button{
@@ -123,7 +124,7 @@ b{
     align-items: center;
     flex-direction: row;
     background-color: black;
-    width: 100%;
+    width: 40%;
     height: 100%;
     padding: 10px;
     cursor: pointer;
@@ -189,34 +190,6 @@ b{
     
 }
 
-
-.logout-button{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    position: fixed;
-    top: 100px;
-    left: 210px;
-    background-color: black;
-    padding: 10px;
-    cursor: pointer;
-}
-
-.register-switch-button{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    position: fixed;
-    top: 170px;
-    left: 210px;
-    background-color: black;
-    padding: 10px;
-    cursor: pointer;
-}
-
-
 .close-button{
     position:absolute;
     top: 16px;
@@ -233,7 +206,6 @@ table {
 }
 
 .table-container {
-    position: fixed;
     top: 250px;
     min-height: 50px;
     max-height: 500px;
@@ -264,7 +236,7 @@ td {
 /* Mobile View */
 
 @media only screen and (max-width: 600px){
-    *{
+    .App{
         overflow-y: auto;
     }
     .login-container,.register-container{
@@ -296,8 +268,8 @@ td {
     }
 
     .create-task-button-container{
-        min-width: 70%;
-        margin-top: 20px;
+        width: 70%;
+        margin: 20px auto;
         overflow: hidden;
     }
 }

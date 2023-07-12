@@ -183,7 +183,7 @@ function TaskViewer() {
                       <input
                         name="progress"
                         value={val.progress}
-                        style={{width: "30px"}}
+                        style={{ width: "30px" }}
                         type="number"
                         placeholder="0"
                         onChange={(e) => updateProgress(e, key)}
@@ -238,16 +238,18 @@ function TaskViewer() {
         <Register setRegisterPage={setRegisterPage} />
       ) : (
         <div className="taskviewer-container">
-          <ButtonComponent
-            buttonText="Logout"
-            buttonClass="logout-button"
-            onClick={() => handleLogout()}
-          />
-          <ButtonComponent
-            buttonClass="register-switch-button"
-            onClick={() => setRegisterPage(true)}
-            buttonText="Register New User"
-          />
+          <div className="button-container">
+            <ButtonComponent
+              buttonText="Logout"
+              buttonClass="page-switch-button"
+              onClick={() => handleLogout()}
+            />
+            <ButtonComponent
+              buttonClass="page-switch-button"
+              onClick={() => setRegisterPage(true)}
+              buttonText="Register New User"
+            />
+          </div>
           <h2> TaskViewer </h2>
 
           <div className="table-container">
@@ -277,12 +279,15 @@ function TaskViewer() {
                 );
               })}
             </table>
+
           </div>
-          <ButtonComponent
-            buttonClass="page-switch-button"
-            onClick={() => setCreatorPage(true)}
-            buttonText="Task Creator"
-          />
+          <div className="button-container">
+            <ButtonComponent
+              buttonClass="page-switch-button"
+              onClick={() => setCreatorPage(true)}
+              buttonText="Task Creator"
+            />
+          </div>
         </div>
       )}
     </>
