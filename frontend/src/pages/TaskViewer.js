@@ -152,11 +152,13 @@ function TaskViewer() {
     <>
       {!auth.admin ? (
         <div className="taskviewer-container">
+          <div className="button-container">
           <ButtonComponent
             buttonText="Logout"
-            buttonClass="logout-button"
+            buttonClass="page-switch-button"
             onClick={() => handleLogout()}
           />
+          </div>
           <h2> TaskViewer </h2>
 
           <div className="table-container">
