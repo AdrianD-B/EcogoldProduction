@@ -30,33 +30,33 @@ mongoose.connection.on("error", (err) => {
 });
 
 // WEBSOCKET
-const wss = new WebSocket.Server({server, path: '/ws'})
+const wss = new WebSocket.Server({ server, path: '/ws' })
 const clients = new Map()
 
 wss.on('connection', (ws) => {
   let clientId = null
   console.log("A new client is connected")
 
-  ws.on('login', (data) => {
-    console.log("Received login event");
-    clientId = data;
-    clients.set(clientId,ws)
-    console.log("client is named: "+ clientId)
-  })
-
   ws.on('error', console.error);
 
   ws.on('message', (message) => {
-    const { recipient, data } = JSON.parse(message);
-    const recipientClient = clients.get(recipient)
+    const { event, recipient, data } = JSON.parse(message);
+    if (event === "create") {
+      const recipientClient = clients.get(recipient)
 
-    if(recipientClient){
-      recipientClient.send(data);
+      if (recipientClient) {
+        recipientClient.send(data);
+      }
+    } else if (event === "login") {
+      console.log("Received login event");
+      clientId = data;
+      clients.set(clientId, ws)
+      console.log("client is named: " + clientId)
     }
   });
 
-  ws.on('close', ()=>{
-    if(clientId){
+  ws.on('close', () => {
+    if (clientId) {
       clients.delete(clientId)
     }
   })
@@ -116,9 +116,9 @@ app.get("/api/user/logout", (req, res) => {
 
 // // TASKS
 
-app.post("/api/task/create", (req,res) => {
+app.post("/api/task/create", (req, res) => {
   const task = new Task({
-    name: req.body.name, 
+    name: req.body.name,
     model: req.body.model,
     description: req.body.description,
     size: req.body.size,
@@ -138,16 +138,16 @@ app.post("/api/task/create", (req,res) => {
     });
 });
 
-app.get('/api/task/getUsers', async (req,res) => {
+app.get('/api/task/getUsers', async (req, res) => {
   try {
-    const users = await User.find({admin: false})
+    const users = await User.find({ admin: false })
     res.status(200).send(users)
   } catch (error) {
     res.status(400).json(error);
   }
 })
 
-app.get('/api/task/admin', async (req,res) => {
+app.get('/api/task/admin', async (req, res) => {
   try {
     const tasks = await Task.find()
     res.status(200).send(tasks)
@@ -156,7 +156,7 @@ app.get('/api/task/admin', async (req,res) => {
   }
 })
 
-app.get('/api/task/user', async (req,res) => {
+app.get('/api/task/user', async (req, res) => {
   try {
     const tasks = await Task.aggregate([{
       $match: {
@@ -172,10 +172,10 @@ app.get('/api/task/user', async (req,res) => {
   }
 })
 
-app.post('/api/task/update', async (req,res) => {
-  const {_id,progress} = req.body
+app.post('/api/task/update', async (req, res) => {
+  const { _id, progress } = req.body
   try {
-    const task = await Task.updateOne({_id},{$set: {progress}})
+    const task = await Task.updateOne({ _id }, { $set: { progress } })
     res.status(200).send(task)
   } catch (error) {
     res.status(400).json(error);

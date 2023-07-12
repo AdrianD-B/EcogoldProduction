@@ -30,6 +30,7 @@ function TaskCreator({ setCreatorPage }) {
       );
       socket.send(
         JSON.stringify({
+          eventName: "create",
           recipient: formDetails.name,
           data: formDetails.description,
         })

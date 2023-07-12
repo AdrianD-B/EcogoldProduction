@@ -11,7 +11,7 @@ export const WSProvider = ({ children }) => {
 
     ws.onopen =()=>{
       console.log("WebSocket connection opened");
-      ws.send(JSON.stringify({ event: 'login', data: auth.name }));
+      ws.send(JSON.stringify({ eventName: 'login', recipient: "" , data: auth.name }));
     }
     
     setSocket(ws);
