@@ -197,9 +197,9 @@ b{
 }
 
 table {
-    border: 2px solid forestgreen;
-    width: 800px;
-    height: 50px;
+    border: 1px solid #bbb;
+    width: 110%;
+    height: 30%;
     align-items: center;
     margin: auto;
     overflow-y: scroll;
@@ -208,7 +208,7 @@ table {
 .table-container {
     top: 250px;
     min-height: 50px;
-    max-height: 500px;
+    max-height: 100px;
     padding: 0 10px 10px 10px;
     overflow-y: scroll;
 }
@@ -222,10 +222,12 @@ thead {
  
 th {
     border-bottom: 1px solid black;
+    border-top: 1px solid #ddd;
 }
  
 td {
     text-align: center;
+    border-top: 1px solid #ddd;
 }
 
 .task-creation-form{
@@ -271,5 +273,16 @@ td {
         width: 70%;
         margin: 20px auto;
         overflow: hidden;
+    }
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        
+    }
+    
+    .table-container {
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+    padding: 0 1px 1px 1px;
     }
 }
