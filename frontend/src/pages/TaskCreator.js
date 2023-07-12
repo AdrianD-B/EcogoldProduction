@@ -62,6 +62,13 @@ function TaskCreator({ setCreatorPage }) {
   return (
     <div className="taskcreator-container">
       <h2> TaskCreator </h2>
+      <button className="create-task-button-container">
+      <ButtonComponent
+            buttonClass="page-switch-button"
+            onClick={() => setCreatorPage(false)}
+            buttonText="Task Viewer"
+          />
+          </button>
       <form className="task-creation-form" onSubmit={handleTaskCreation}>
         <div>
           <div className="input-form-container">
@@ -132,11 +139,6 @@ function TaskCreator({ setCreatorPage }) {
               <option value="Prep" />
             </datalist>
           </div>
-          <ButtonComponent
-            buttonClass="page-switch-button"
-            onClick={() => setCreatorPage(false)}
-            buttonText="Task Viewer"
-          />
           <button type="submit" className="create-task-button-container">
             <ButtonComponent
               buttonClass="create-task-button"

@@ -12,12 +12,6 @@ h1{
     font-weight: bold;
     font-size: 25;
 }
-h2{
-    position: fixed;
-    top: 70px;
-    
-    padding: 5px;
-}
 h3{
     color: white;
     text-transform: uppercase;
@@ -123,7 +117,7 @@ b{
     margin: auto;
 }
 
-.login-button,.register-button{
+.login-button,.register-button,.create-task-button,.page-switch-button{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -194,33 +188,7 @@ b{
     cursor: pointer;
     
 }
-.create-task-button {
-    position: fixed;
-    top: 80%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    
-    background-color: black;
-    padding: 10px;
-    cursor: pointer;
-}
 
-.page-switch-button{
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    top: 100px;
-    right: 210px;
-    background-color: black;
-    padding: 10px;
-    cursor: pointer;
-}
 
 .logout-button{
     display: flex;
@@ -296,6 +264,9 @@ td {
 /* Mobile View */
 
 @media only screen and (max-width: 600px){
+    *{
+        overflow-y: auto;
+    }
     .login-container,.register-container{
         flex-direction: column;
         width: 300px;
@@ -313,5 +284,20 @@ td {
 
     td {
         font-size: 14px;
+    }
+
+    .taskcreator-container{
+        height: 100vh;
+        margin: 30px;
+    }
+
+    .task-creation-form{
+        flex-direction: column;
+    }
+
+    .create-task-button-container{
+        min-width: 70%;
+        margin-top: 20px;
+        overflow: hidden;
     }
 }
