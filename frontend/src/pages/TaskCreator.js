@@ -136,7 +136,7 @@ function TaskCreator({ setCreatorPage }) {
             />
             <datalist id="tasks">
               <option value="Cutting" />
-              <option value="Sowing" />
+              <option value="Sewing" />
               <option value="Prep" />
             </datalist>
           </div>

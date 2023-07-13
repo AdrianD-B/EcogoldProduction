@@ -292,4 +292,7 @@ td {
     -webkit-overflow-scrolling: touch;
     padding: 0 1px 1px 1px;
     }
+    td {
+        font-size: 20px;
+    }
 }
