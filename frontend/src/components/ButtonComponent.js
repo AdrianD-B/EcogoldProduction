@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 
-function ButtonComponent({buttonClass, buttonText, onClick}) {
+function ButtonComponent({buttonClass, buttonText, onClick, noChev=false}) {
     const [active, setActive] = useState(false)
     const getChevronClassName = () => {
         if (active) return "chevron-arrow-right";
@@ -9,7 +9,7 @@ function ButtonComponent({buttonClass, buttonText, onClick}) {
     return ( 
     <div className={buttonClass} onClick={onClick} onMouseOver={()=>setActive(true)} onMouseOut={()=>setActive(false)}> 
     <h3> {buttonText} </h3>
-    <div className={getChevronClassName()}/>
+    {!noChev ? <div className={getChevronClassName()}/> : null}
     </div>
   )
 }
