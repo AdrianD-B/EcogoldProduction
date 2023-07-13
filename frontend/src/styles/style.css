@@ -198,17 +198,19 @@ b{
 
 table {
     border: 1px solid #bbb;
-    width: 110%;
+    width: 800px;
     height: 30%;
     align-items: center;
     margin: auto;
     overflow-y: scroll;
+    padding: 2px;
 }
 
 .table-container {
     top: 250px;
     min-height: 50px;
     max-height: 100px;
+    width:auto;
     padding: 0 10px 10px 10px;
     overflow-y: scroll;
 }
@@ -240,6 +242,7 @@ td {
 @media only screen and (max-width: 600px){
     .App{
         overflow-y: auto;
+        overflow-x: auto;
     }
     .login-container,.register-container{
         flex-direction: column;
@@ -260,7 +263,7 @@ td {
         font-size: 14px;
     }
 
-    .taskcreator-container{
+    .taskcreator-container, .taskviewer-container{
         height: 100vh;
         margin: 30px;
     }
@@ -276,13 +279,14 @@ td {
     }
     table {
         border-collapse: collapse;
-        border-spacing: 0;
+       
         
     }
     
     .table-container {
-    overflow-x: scroll;
-    -webkit-overflow-scrolling: touch;
-    padding: 0 1px 1px 1px;
+        width:90%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        
     }
 }
