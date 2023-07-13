@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import AuthContext from "./context/AuthProvider";
 import Login from "./pages/Login";
@@ -13,6 +13,14 @@ import ButtonComponent from "./components/ButtonComponent";
 function App() {
   const { auth, setAuth, loggedIn, setLoggedIn, lang, setLang } = useContext(AuthContext);
   const [cookies, setCookie] = useCookies();
+  const [langdisp] = useState([{language: "EN"}]);
+  
+  if (lang === "EN") {
+    langdisp.language = "FR"
+  }
+  else {
+    langdisp.language = "EN"
+  }
 
   const handleAuth = async () => {
     let token = cookies.x_auth;
@@ -50,7 +58,7 @@ function App() {
       <ButtonComponent
         noChev={true}
         buttonClass="lang-button"
-        buttonText={lang}
+        buttonText={langdisp.language}
         onClick={() => setLang(lang === "EN" ? "FR" : "EN")}
       />
       </div>

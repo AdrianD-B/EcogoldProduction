@@ -36,7 +36,7 @@ function TaskViewer() {
       progress: 0,
     },
   ]);
-
+  
   const handleProgressUpdate = async (quantity, progress, _id) => {
     if (progress >= quantity) {
       console.log(progress);
@@ -112,6 +112,7 @@ function TaskViewer() {
     !auth.admin ? handleDataUser() : handleDataAdmin();
   }, []);
 
+  
   const saveProgress = (quantity, progress, _id) => {
     if (progress < quantity) {
       console.log(`Progress Saved for row ${_id}`);
@@ -178,7 +179,9 @@ function TaskViewer() {
                     <td>{val.size}</td>
                     <td>{val.quantity}</td>
                     <td>{val.description}</td>
-                    <td>{val.task}</td>
+                    <td>{(lang!="EN" && val.task === "Cutting") ? "Coupage" : 
+                    (lang!="EN" && val.task === "Sewing") ? "Couture" : 
+                    (lang!="EN" && val.task === "Prep") ? "Préparation" : val.task}</td>
                     <td>
                       <input
                         name="progress"
@@ -270,7 +273,9 @@ function TaskViewer() {
                     <td>{val.color}</td>
                     <td>{val.size}</td>
                     <td>{val.quantity}</td>
-                    <td>{val.task}</td>
+                    <td>{(lang!="EN" && val.task === "Cutting") ? "Coupage" : 
+                    (lang!="EN" && val.task === "Sewing") ? "Couture" : 
+                    (lang!="EN" && val.task === "Prep") ? "Préparation" : val.task}</td>
                     <td>{val.date.slice(0, 10)}</td>
                     <td>{val.progress}</td>
                   </tr>
