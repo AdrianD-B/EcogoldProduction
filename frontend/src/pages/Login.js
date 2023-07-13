@@ -6,7 +6,7 @@ import FormInput from "../components/FormInput";
 import { useCookies } from "react-cookie";
 
 function Login() {
-  const { setAuth, setLoggedIn } = useContext(AuthContext);
+  const { setAuth, setLoggedIn, lang } = useContext(AuthContext);
   const [formDetails, setFormDetails] = useState({});
   const formRef = useRef();
   const [cookies, setCookie] = useCookies();
@@ -62,19 +62,19 @@ function Login() {
             value={formDetails.email}
             onChange={handleFormInputChange}
             inputType="email"
-            header="Email"
+            header={lang === "EN" ?"Email":"Courriel"}
           />
           <FormInput
             inputClass="login-form-item"
             value={formDetails.password}
             onChange={handleFormInputChange}
             inputType="password"
-            header="Password"
+            header={lang === "EN" ?"Password":"Mot de passe"}
           />
           <button type="submit" className="login-button-container">
             <ButtonComponent
               buttonClass="login-button"
-              buttonText="Login"
+              buttonText={lang === "EN" ?"Login":"Se connecter"}
             ></ButtonComponent>
           </button>
         </form>

@@ -204,7 +204,7 @@ b{
 
 table {
     border: 1px solid #bbb;
-    width: 110%;
+    width: 100%;
     height: 30%;
     align-items: center;
     margin: auto;
@@ -212,10 +212,9 @@ table {
 }
 
 .table-container {
-    top: 250px;
+    width: 90%;
     min-height: 50px;
-    max-height: 100px;
-    padding: 0 10px 10px 10px;
+    max-height: 500px;
     overflow-y: scroll;
 }
 
@@ -223,7 +222,7 @@ thead {
     background-color: grey;
     position: sticky;
     top: 0px;
-    margin: 0 0 0 0;
+    margin: 0;
 }
  
 th {
@@ -234,6 +233,7 @@ th {
 td {
     text-align: center;
     border-top: 1px solid #ddd;
+    width: 1px;
 }
 
 .task-creation-form{
