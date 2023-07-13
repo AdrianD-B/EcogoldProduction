@@ -10,7 +10,7 @@ import TaskCreator from "./TaskCreator";
 import Register from "./Register";
 
 function TaskViewer() {
-  const { auth, setLoggedIn } = useContext(AuthContext);
+  const { auth, setLoggedIn, lang } = useContext(AuthContext);
   const { socket } = useContext(WSContext);
 
   const [buttonPopup, setButtonPopup] = useState({
@@ -154,23 +154,21 @@ function TaskViewer() {
         <div className="taskviewer-container">
           <div className="button-container">
           <ButtonComponent
-            buttonText="Logout"
+            buttonText={lang === "EN" ?"Logout":"Se déconnecter"}
             buttonClass="page-switch-button"
             onClick={() => handleLogout()}
           />
           </div>
-          <h2> TaskViewer </h2>
-
           <div className="table-container">
             <table>
               <thead>
-                <th>Model</th>
-                <th>Color</th>
-                <th>Size</th>
-                <th>Quantity</th>
+                <th>{lang === "EN" ?"Model":"Modèle"}</th>
+                <th>{lang === "EN" ?"Color":"Couleur"}</th>
+                <th>{lang === "EN" ?"Size":"Taille"}</th>
+                <th>{lang === "EN" ?"Quantity":"Quantité"}</th>
                 <th>Description</th>
-                <th>Task</th>
-                <th>Progress</th>
+                <th>{lang === "EN" ?"Task":"Tâche"}</th>
+                <th>{lang === "EN" ?"Progress":"Progrès"}</th>
               </thead>
               {data.map((val, key) => {
                 return (
@@ -199,7 +197,7 @@ function TaskViewer() {
                           saveProgress(val.quantity, val.progress, val._id)
                         }
                       >
-                        Save Progress
+                        {lang === "EN" ?"Save":"Sauvegarder"}
                       </button>
                     </td>
                   </tr>
@@ -212,11 +210,11 @@ function TaskViewer() {
             trigger={buttonPopup.visibility}
             setTrigger={setButtonPopup}
           >
-            <p>Are you sure you have completed this task?</p>
+            <p>{lang === "EN" ?"Are you sure you have completed this task?":"Êtes-vous sûr d'avoir terminé cette tâche ?"}</p>
             <ButtonComponent
               buttonClass="enter-button"
               type="submit"
-              buttonText={"Yes"}
+              buttonText={lang === "EN" ?"Yes":"Oui"}
               onClick={() =>
                 handleProgressUpdate(
                   buttonPopup.quantity,
@@ -231,7 +229,7 @@ function TaskViewer() {
             trigger={confirmPopup}
             setTrigger={setConfirmPopup}
           >
-            <p>Progress saved for entry!</p>
+            <p>{lang === "EN" ?"Progress saved":"Progrès sauvegarder"}</p>
           </Popup>
         </div>
       ) : creatorPage ? (
@@ -242,29 +240,27 @@ function TaskViewer() {
         <div className="taskviewer-container">
           <div className="button-container">
             <ButtonComponent
-              buttonText="Logout"
+              buttonText={lang === "EN" ?"Logout":"Se déconnecter"}
               buttonClass="page-switch-button"
               onClick={() => handleLogout()}
             />
             <ButtonComponent
               buttonClass="page-switch-button"
               onClick={() => setRegisterPage(true)}
-              buttonText="Register New User"
+              buttonText={lang === "EN" ?"Register":"Enregistrer"}
             />
           </div>
-          <h2> TaskViewer </h2>
-
           <div className="table-container">
             <table>
               <thead>
-                <th>Name</th>
-                <th>Model</th>
-                <th>Color</th>
-                <th>Size</th>
-                <th>Quantity</th>
-                <th>Task</th>
+                <th>{lang === "EN" ?"Name":"Nom"}</th>
+                <th>{lang === "EN" ?"Model":"Modèle"}</th>
+                <th>{lang === "EN" ?"Color":"Couleur"}</th>
+                <th>{lang === "EN" ?"Size":"Taille"}</th>
+                <th>{lang === "EN" ?"Quantity":"Quantité"}</th>
+                <th>{lang === "EN" ?"Task":"Tâche"}</th>
                 <th>Date</th>
-                <th>Progress</th>
+                <th>{lang === "EN" ?"Progress":"Progrès"}</th>
               </thead>
               {data.map((val, key) => {
                 return (
@@ -287,7 +283,7 @@ function TaskViewer() {
             <ButtonComponent
               buttonClass="page-switch-button"
               onClick={() => setCreatorPage(true)}
-              buttonText="Task Creator"
+              buttonText={lang === "EN" ?"Task Creator":"Création de tâche"}
             />
           </div>
         </div>
