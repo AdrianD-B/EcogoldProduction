@@ -8,7 +8,7 @@ function ButtonComponent({buttonClass, buttonText, onClick, noChev=false}) {
     }
     return ( 
     <div className={buttonClass} onClick={onClick} onMouseOver={()=>setActive(true)} onMouseOut={()=>setActive(false)}> 
-    <h3> {buttonText} </h3>
+    <h3 style={{color: 'white'}}> {buttonText} </h3>
     {!noChev ? <div className={getChevronClassName()}/> : null}
     </div>
   )
