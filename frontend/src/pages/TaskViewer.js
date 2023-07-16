@@ -109,7 +109,7 @@ function TaskViewer() {
   };
 
   useEffect(() => {
-    !auth.admin ? handleDataUser() : handleDataAdmin();
+    auth.admin ? handleDataUser() : handleDataAdmin();
   }, []);
 
   
@@ -151,7 +151,7 @@ function TaskViewer() {
 
   return (
     <>
-      {!auth.admin ? (
+      {auth.admin ? (
         <div className="taskviewer-container">
           <div className="button-container">
           <ButtonComponent
@@ -276,7 +276,7 @@ function TaskViewer() {
                     <td>{(lang!="EN" && val.task === "Cutting") ? "Coupage" : 
                     (lang!="EN" && val.task === "Sewing") ? "Couture" : 
                     (lang!="EN" && val.task === "Prep") ? "Préparation" : val.task}</td>
-                    <td>{val.date.slice(0, 10)}</td>
+                    <td>{val.date}</td>
                     <td>{val.progress}</td>
                   </tr>
                 );
