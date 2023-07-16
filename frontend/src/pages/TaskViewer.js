@@ -34,6 +34,7 @@ function TaskViewer() {
       task: "",
       date: "",
       progress: 0,
+      completiondate: ""
     },
   ]);
   
@@ -44,15 +45,18 @@ function TaskViewer() {
       console.log(progress);
     }
     try {
+      const completiondate = new Date().toLocaleString('en-CA', { hour12: false, year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit'}).replace(/\//g, '-')
+      updateCompletion(completiondate)
       const response = await axios.post(
         "https://ecogoldproduction.onrender.com/api/task/update",
-        { progress, _id },
+        { progress, _id, completiondate },
         {
           headers: { "Content-Type": "application/json" },
           withCredentials: false,
         }
       );
       console.log(response);
+      console.log(completiondate)
       setConfirmPopup(true);
     } catch (error) {
       console.log(error.response.data);
@@ -130,6 +134,12 @@ function TaskViewer() {
   const updateProgress = (e, key) => {
     const updatedData = [...data];
     updatedData[key].progress = parseInt(e.target.value);
+    setData(updatedData);
+  };
+
+  const updateCompletion = (e, key) => {
+    const updatedData = [...data];
+    updatedData[key].completiondate = e.target.value;
     setData(updatedData);
   };
 
@@ -264,6 +274,7 @@ function TaskViewer() {
                 <th>{lang === "EN" ?"Task":"Tâche"}</th>
                 <th>Date</th>
                 <th>{lang === "EN" ?"Progress":"Progrès"}</th>
+                <th>CompletionDate</th>
               </thead>
               {data.map((val, key) => {
                 return (
@@ -278,6 +289,7 @@ function TaskViewer() {
                     (lang!="EN" && val.task === "Prep") ? "Préparation" : val.task}</td>
                     <td>{val.date}</td>
                     <td>{val.progress}</td>
+                    <td>{val.completiondate}</td>
                   </tr>
                 );
               })}
