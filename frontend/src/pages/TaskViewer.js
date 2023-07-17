@@ -246,12 +246,14 @@ function TaskViewer() {
               buttonClass="enter-button"
               type="submit"
               buttonText={lang === "EN" ? "Yes" : "Oui"}
-              onClick={() =>
+              onClick={() => {
                 handleProgressUpdate(
                   buttonPopup.quantity,
                   buttonPopup.progress,
                   buttonPopup._id
                 )
+                setButtonPopup(false)
+              }
               }
             />
           </Popup>
@@ -261,6 +263,7 @@ function TaskViewer() {
             setTrigger={setConfirmPopup}
           >
             <p>{lang === "EN" ? "Progress saved" : "Progrès sauvegarder"}</p>
+            
           </Popup>
         </div>
       ) : creatorPage ? (
