@@ -173,9 +173,9 @@ app.get('/api/task/user', async (req, res) => {
 })
 
 app.post('/api/task/update', async (req, res) => {
-  const { _id, progress } = req.body
+  const { _id, progress, completiondate } = req.body
   try {
-    const task = await Task.updateOne({ _id }, { $set: { progress } })
+    const task = await Task.updateOne({ _id }, { $set: { progress, completiondate } })
     res.status(200).send(task)
   } catch (error) {
     res.status(400).json(error);

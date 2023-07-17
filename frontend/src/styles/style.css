@@ -31,6 +31,14 @@ b{
     width: 100vw;
 }
 
+.admin-App{
+    display: flex;
+    justify-content: center;
+    background-color: #FFF7D4;
+    width: 100vw;
+    height: 100vh;
+}
+
 /* Login/Register pages */
 
 .login-container,.register-container{
@@ -89,7 +97,7 @@ b{
 }
 
 /* Task Viewer/Maker pages */
-.taskviewer-container, .taskcreator-container{
+.taskviewer-container{
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -100,9 +108,20 @@ b{
     background-color: #FFD95A;
     box-shadow: 12px 12px 20px #4C3D3D;
 }
+.admin-taskviewer-container, .taskcreator-container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    width: 1000px;
+    height: 500px;
+    margin: auto;
+    background-color: #FFD95A;
+    box-shadow: 12px 12px 20px #4C3D3D;
+}
 
 /* Components */
-.login-button-container,.register-button-container, .create-task-button-container,.button-container,.lang-button-container{
+.login-button-container,.register-button-container, .create-task-button-container, .page-switch-button-container, .button-container,.lang-button-container{
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -205,6 +224,36 @@ b{
     overflow: hidden;
 }
 
+table {
+    border: 2px solid forestgreen;
+    width: 800px;
+    height: 50px;
+    align-items: center;
+    margin: auto;
+    overflow-y: scroll;
+    
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+thead {
+    background-color: grey;
+    position: sticky;
+    top: 0px;
+    margin: 0 0 0 0;
+}
+.admin-table-container {
+    position: fixed;
+    top: 200px;
+    min-height: 50px;
+    max-height: 250px;
+    padding: 0 10px 10px 10px;
+    overflow-y: scroll;
+}
+
+
 .task-creation-form{
     display: flex;
     flex-direction: row;
@@ -248,5 +297,20 @@ b{
         width: 70%;
         margin: 20px auto;
         overflow: hidden;
+    }
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        height: 30%;
+        
+    }
+    
+    .admin-table-container {
+    width:90%;
+    min-height: 50px;
+    max-height: 150px;
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+    padding: 0 1px 1px 1px;
     }
 }

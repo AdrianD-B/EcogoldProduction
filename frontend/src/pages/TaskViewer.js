@@ -46,7 +46,7 @@ function TaskViewer() {
     }
     try {
       const completiondate = new Date().toLocaleString('en-CA', { hour12: false, year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit'}).replace(/\//g, '-')
-      updateCompletion(completiondate)
+      
       const response = await axios.post(
         "https://ecogoldproduction.onrender.com/api/task/update",
         { progress, _id, completiondate },
@@ -136,11 +136,7 @@ function TaskViewer() {
     setData(updatedData);
   };
 
-  const updateCompletion = (e, key) => {
-    const updatedData = [...data];
-    updatedData[key].completiondate = e.target.value;
-    setData(updatedData);
-  };
+  
 
   const handleLogout = async () => {
     try {
@@ -263,8 +259,8 @@ function TaskViewer() {
       ) : registerPage ? (
         <Register setRegisterPage={setRegisterPage} />
       ) : (
-        <div className="taskviewer-container">
-          <div className="button-container">
+        <div className="admin-taskviewer-container">
+          <div className="page-switch-button-container">
             <ButtonComponent
               buttonText={lang === "EN" ? "Logout" : "Se déconnecter"}
               buttonClass="page-switch-button"
@@ -276,7 +272,7 @@ function TaskViewer() {
               buttonText={lang === "EN" ? "Register" : "Enregistrer"}
             />
           </div>
-          <div className="table-container">
+          <div className="admin-table-container">
             <table>
               <thead>
                 <th>{lang === "EN" ? "Name" : "Nom"}</th>
@@ -314,7 +310,7 @@ function TaskViewer() {
               })}
             </table>
           </div>
-          <div className="button-container">
+          <div className="page-switch-button-container">
             <ButtonComponent
               buttonClass="page-switch-button"
               onClick={() => setCreatorPage(true)}
