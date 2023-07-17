@@ -289,10 +289,6 @@ thead {
     thead{
         position: sticky;
     }
-
-    .taskcreator-container{
-        margin-top: 200px;
-    }
     
     .admin-table-container {
     width:90%;
