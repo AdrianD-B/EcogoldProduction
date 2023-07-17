@@ -231,6 +231,7 @@ thead {
 }
 .admin-table-container {
     padding: 0 10px 10px 10px;
+    text-align: center;
 }
 
 .task-creation-form{

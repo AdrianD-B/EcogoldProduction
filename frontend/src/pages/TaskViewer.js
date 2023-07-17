@@ -118,7 +118,7 @@ function TaskViewer() {
   };
 
   useEffect(() => {
-    !auth.admin ? handleDataUser() : handleDataAdmin();
+    auth.admin ? handleDataUser() : handleDataAdmin();
   }, []);
 
   const saveProgress = (quantity, progress, _id) => {
@@ -164,7 +164,7 @@ function TaskViewer() {
 
   return (
     <>
-      {!auth.admin ? (
+      {auth.admin ? (
         <div className="taskviewer-container">
           <div style={{ textAlign: "center" }}>
             <h1>{auth.name}</h1>
@@ -324,9 +324,9 @@ function TaskViewer() {
                         ? "Préparation"
                         : val.task}
                     </td>
-                    <td>{val.date}</td>
+                    <td>{val.date !== undefined ? val.date.slice(0,10) + " " + val.date.slice(11,16):null}</td>
                     <td>{val.progress}</td>
-                    <td>{val.completiondate}</td>
+                    <td>{val.completiondate !== undefined ? val.completiondate.slice(0,10) + " " + val.completiondate.slice(11,16):null}</td>
                   </tr>
                 );
               })}
