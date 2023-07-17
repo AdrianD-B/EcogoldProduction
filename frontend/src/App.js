@@ -52,7 +52,7 @@ function App() {
     handleAuth();
   }, []);
   return (
-    <div className="App">
+    <div className={!auth.admin ? "admin-App" : "App"}>
       <Notifications />
       <div className="lang-button-container">
       <ButtonComponent
