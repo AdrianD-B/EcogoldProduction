@@ -4,15 +4,18 @@ import AuthContext from "../context/AuthProvider";
 import ButtonComponent from "../components/ButtonComponent";
 import FormInput from "../components/FormInput";
 import { useCookies } from "react-cookie";
+import BeatLoader from "react-spinners/BeatLoader";
 
 function Login() {
   const { setAuth, setLoggedIn, lang } = useContext(AuthContext);
   const [formDetails, setFormDetails] = useState({});
+  const [loading, setLoading] = useState(false);
   const formRef = useRef();
   const [cookies, setCookie] = useCookies();
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setLoading(true)
     try {
       const response = await axios.post(
         "https://ecogoldproduction.onrender.com/api/user/login",
@@ -34,8 +37,10 @@ function Login() {
         setCookie("x_auth", response.data.token);
         setLoggedIn(true);
       }
+      setLoading(false)
     } catch (error) {
       console.log(error.response.data);
+      setLoading(false)
     }
   };
 
@@ -77,6 +82,7 @@ function Login() {
               buttonText={lang === "EN" ?"Login":"Se connecter"}
             ></ButtonComponent>
           </button>
+          {loading ? <BeatLoader style={{marginLeft: "80px"}} color="#000000" /> : null}      
         </form>
       </div>
     </>
