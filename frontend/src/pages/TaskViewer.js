@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect, useMemo } from "react";
 import axios from "axios";
 import addNotification from "react-push-notification";
 
@@ -12,7 +12,6 @@ import Register from "./Register";
 function TaskViewer() {
   const { auth, setLoggedIn, lang } = useContext(AuthContext);
   const { socket } = useContext(WSContext);
-
   const [buttonPopup, setButtonPopup] = useState({
     visibility: false,
     progress: "",
@@ -22,6 +21,7 @@ function TaskViewer() {
   const [confirmPopup, setConfirmPopup] = useState(false);
   const [creatorPage, setCreatorPage] = useState(false);
   const [registerPage, setRegisterPage] = useState(false);
+  const [query, setQuery] = useState("");
 
   const [data, setData] = useState([
     {
@@ -34,7 +34,7 @@ function TaskViewer() {
       task: "",
       date: "",
       progress: 0,
-      completiondate: ""
+      completiondate: "",
     },
   ]);
 
@@ -45,8 +45,17 @@ function TaskViewer() {
       console.log(progress);
     }
     try {
-      const completiondate = new Date().toLocaleString('en-CA', { hour12: false, year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit'}).replace(/\//g, '-')
-      updateCompletion(completiondate)
+      const completiondate = new Date()
+        .toLocaleString("en-CA", {
+          hour12: false,
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+          hour: "2-digit",
+          minute: "2-digit",
+        })
+        .replace(/\//g, "-");
+      updateCompletion(completiondate);
       const response = await axios.post(
         "https://ecogoldproduction.onrender.com/api/task/update",
         { progress, _id, completiondate },
@@ -56,7 +65,7 @@ function TaskViewer() {
         }
       );
       console.log(response);
-      console.log(completiondate)
+      console.log(completiondate);
       setConfirmPopup(true);
     } catch (error) {
       console.log(error.response.data);
@@ -79,6 +88,12 @@ function TaskViewer() {
       console.log(error.response.data);
     }
   };
+
+  const filteredData = useMemo(() => {
+    return data.filter((data) => {
+      return data.name.toLowerCase().includes(query.toLowerCase());
+    });
+  }, [data, query]);
 
   useEffect(() => {
     if (socket) {
@@ -113,7 +128,7 @@ function TaskViewer() {
   };
 
   useEffect(() => {
-    !auth.admin ? handleDataUser() : handleDataAdmin();
+    auth.admin ? handleDataUser() : handleDataAdmin();
   }, []);
 
   const saveProgress = (quantity, progress, _id) => {
@@ -158,75 +173,79 @@ function TaskViewer() {
     }
   };
 
-  const colors = ['#F8D7DC', '#C8E6C9', '#D6E9F8', '#E6E6FA', '#FFE5B4'];
+  const colors = ["#F8D7DC", "#C8E6C9", "#D6E9F8", "#E6E6FA", "#FFE5B4"];
   var date = new Date(Date.now());
 
   return (
     <>
-      {!auth.admin ? (
+      {auth.admin ? (
         <div className="taskviewer-container">
-          <div style={{textAlign: "center"}}>
+          <div style={{ textAlign: "center" }}>
             <h1>{auth.name}</h1>
-            {date.toISOString().slice(0,10)}
+            {date.toISOString().slice(0, 10)}
           </div>
-            {data.map((val, key) => {
-              return (
-                <div key={key} className="table-container" style={{backgroundColor: colors[key]}}>
-                  <div>
-                    <h3>{lang === "EN" ? "Model" : "Modèle"}</h3>
-                    <p>{val.model}</p>
-                  </div>
-                  <div>
-                    <h3>{lang === "EN" ? "Color" : "Couleur"}</h3>
-                    <p>{val.color}</p>
-                  </div>
-                  <div>
-                    <h3>{lang === "EN" ? "Size" : "Taille"}</h3>
-                    <p>{val.size}</p>
-                  </div>
-                  <div>
-                    <h3>{lang === "EN" ? "Quantity" : "Quantité"}</h3>
-                    <p>{val.quantity}</p>
-                  </div>
-                  <div>
-                    <h3>Description</h3>
-                    <p>{val.description}</p>
-                  </div>
-                  <div>
-                    <h3>{lang === "EN" ? "Task" : "Tâche"}</h3>
-                    <p>
-                      {lang !== "EN" && val.task === "Cutting"
-                        ? "Coupage"
-                        : lang !== "EN" && val.task === "Sewing"
-                        ? "Couture"
-                        : lang !== "EN" && val.task === "Prep"
-                        ? "Préparation"
-                        : val.task}
-                    </p>
-                  </div>
-                  <div>
-                    <h3>{lang === "EN" ? "Progress" : "Progrès"}</h3>
-                    <input
-                      name="progress"
-                      value={val.progress}
-                      style={{ width: "30px" }}
-                      type="number"
-                      placeholder="0"
-                      onChange={(e) => updateProgress(e, key)}
-                    />
-                    <p>{`/${val.quantity}`}</p>
-                    <button
-                      className="progress-button"
-                      onClick={() =>
-                        saveProgress(val.quantity, val.progress, val._id)
-                      }
-                    >
-                      {lang === "EN" ? "Save" : "Sauvegarder"}
-                    </button>
-                  </div>
+          {data.map((val, key) => {
+            return (
+              <div
+                key={key}
+                className="table-container"
+                style={{ backgroundColor: colors[key] }}
+              >
+                <div>
+                  <h3>{lang === "EN" ? "Model" : "Modèle"}</h3>
+                  <p>{val.model}</p>
                 </div>
-              );
-            })}
+                <div>
+                  <h3>{lang === "EN" ? "Color" : "Couleur"}</h3>
+                  <p>{val.color}</p>
+                </div>
+                <div>
+                  <h3>{lang === "EN" ? "Size" : "Taille"}</h3>
+                  <p>{val.size}</p>
+                </div>
+                <div>
+                  <h3>{lang === "EN" ? "Quantity" : "Quantité"}</h3>
+                  <p>{val.quantity}</p>
+                </div>
+                <div>
+                  <h3>Description</h3>
+                  <p>{val.description}</p>
+                </div>
+                <div>
+                  <h3>{lang === "EN" ? "Task" : "Tâche"}</h3>
+                  <p>
+                    {lang !== "EN" && val.task === "Cutting"
+                      ? "Coupage"
+                      : lang !== "EN" && val.task === "Sewing"
+                      ? "Couture"
+                      : lang !== "EN" && val.task === "Prep"
+                      ? "Préparation"
+                      : val.task}
+                  </p>
+                </div>
+                <div>
+                  <h3>{lang === "EN" ? "Progress" : "Progrès"}</h3>
+                  <input
+                    name="progress"
+                    value={val.progress}
+                    style={{ width: "30px" }}
+                    type="number"
+                    placeholder="0"
+                    onChange={(e) => updateProgress(e, key)}
+                  />
+                  <p>{`/${val.quantity}`}</p>
+                  <button
+                    className="progress-button"
+                    onClick={() =>
+                      saveProgress(val.quantity, val.progress, val._id)
+                    }
+                  >
+                    {lang === "EN" ? "Save" : "Sauvegarder"}
+                  </button>
+                </div>
+              </div>
+            );
+          })}
           <Popup
             className="popup-progress"
             trigger={buttonPopup.visibility}
@@ -275,6 +294,19 @@ function TaskViewer() {
               onClick={() => setRegisterPage(true)}
               buttonText={lang === "EN" ? "Register" : "Enregistrer"}
             />
+            <ButtonComponent
+              buttonClass="page-switch-button"
+              onClick={() => setCreatorPage(true)}
+              buttonText={lang === "EN" ? "Task Creator" : "Création de tâche"}
+            />
+          </div>
+          <div>
+            <h4>Search</h4>
+            <input
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            type="search"
+          />
           </div>
           <div className="table-container">
             <table>
@@ -286,10 +318,10 @@ function TaskViewer() {
                 <th>{lang === "EN" ? "Quantity" : "Quantité"}</th>
                 <th>{lang === "EN" ? "Task" : "Tâche"}</th>
                 <th>Date</th>
-                <th>{lang === "EN" ?"Progress":"Progrès"}</th>
+                <th>{lang === "EN" ? "Progress" : "Progrès"}</th>
                 <th>CompletionDate</th>
               </thead>
-              {data.map((val, key) => {
+              {filteredData.map((val, key) => {
                 return (
                   <tr key={key}>
                     <td>{val.name}</td>
@@ -313,13 +345,6 @@ function TaskViewer() {
                 );
               })}
             </table>
-          </div>
-          <div className="button-container">
-            <ButtonComponent
-              buttonClass="page-switch-button"
-              onClick={() => setCreatorPage(true)}
-              buttonText={lang === "EN" ? "Task Creator" : "Création de tâche"}
-            />
           </div>
         </div>
       )}

@@ -29,6 +29,7 @@ b{
     justify-content: center;
     background-color: #FFF7D4;
     width: 100vw;
+    min-height: 100vh;
 }
 
 /* Login/Register pages */
@@ -85,7 +86,7 @@ b{
 }
 
 .login-logo-img,.register-logo-img{
-    height: 30%;
+    height: 20%;
 }
 
 /* Task Viewer/Maker pages */
@@ -95,7 +96,7 @@ b{
     align-items: center;
     flex-direction: column;
     width: 80vw;
-    min-height: 200vh;
+    min-height: 0;
     margin-top: 100px;
     background-color: #FFD95A;
     box-shadow: 12px 12px 20px #4C3D3D;
@@ -110,8 +111,7 @@ b{
     background-color: black;
     border: none;
     width: 70%;
-    height: auto;
-    padding: 0;
+    height: 40px;
     margin: 0 auto;
 }
 
@@ -189,7 +189,6 @@ b{
     background-color: black;
     padding: 10px;
     cursor: pointer;
-    
 }
 
 .close-button{
@@ -229,6 +228,10 @@ b{
 
     .login-form,.register-form{
         margin-bottom: 100px;
+    }
+
+    .login-logo-img,.register-logo-img{
+        height: 35%;
     }
 
     td {
