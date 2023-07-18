@@ -38,12 +38,15 @@ function Register({setRegisterPage}) {
 
   return (
     <div className="register-container">
-      <div className="register-side-container">
+      <div className="register-side-container" style={{flexDirection: "column"}}>
         <img
           src="./ECOGOLD_LOGO_Transparent.png"
           className="register-logo-img"
           alt="EcogoldLogo"
         />
+        <button type="submit" className="button-container">
+      <ButtonComponent buttonClass="page-switch-button" onClick={() => setRegisterPage(false)} buttonText="Task Viewer" />
+      </button>
       </div>
       <form onSubmit={handleRegister} className="register-form">
         <FormInput
@@ -74,7 +77,6 @@ function Register({setRegisterPage}) {
           />
         </button>
       </form>
-      <ButtonComponent buttonClass="register-switch-button" onClick={() => setRegisterPage(false)} buttonText="Task Viewer" />
       <Popup className="popup-register-confirm" trigger={confirmPopup} setTrigger={setConfirmPopup}>
             <p>New user registered!</p>
       </Popup>
