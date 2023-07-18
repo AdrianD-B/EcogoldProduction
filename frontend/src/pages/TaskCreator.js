@@ -140,9 +140,9 @@ function TaskCreator({ setCreatorPage }) {
               <option value="Prep" />
             </datalist>
           </div>
-          <button type="submit" className="create-task-button-container">
+          <button type="submit" className="button-container">
             <ButtonComponent
-              buttonClass="create-task-button"
+              buttonClass="page-switch-button"
               buttonText="Create Task"
             />
           </button>
