@@ -63,7 +63,7 @@ function TaskCreator({ setCreatorPage }) {
   return (
     <div className="taskcreator-container">
       <h2> TaskCreator </h2>
-      <button className="create-task-button-container">
+      <button className="button-container">
       <ButtonComponent
             buttonClass="page-switch-button"
             onClick={() => setCreatorPage(false)}
